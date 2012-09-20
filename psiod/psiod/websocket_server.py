@@ -14,11 +14,11 @@ class WebSocketServer(websocket.WebSocketHandler):
     print 'socket closed'
 
 def die_gracefully(signal, frame):
-  print "psiod terminated"
+  print 'psiod terminated'
   sys.exit(0)
 
 def main():
-  print "psiod started"
+  print 'psiod started'
   signal.signal(signal.SIGINT, die_gracefully)
   app = tornado.web.Application([
     (r"/", WebSocketServer),
