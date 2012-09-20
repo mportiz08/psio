@@ -1,9 +1,6 @@
 import psutil
 
-class ProcessMonitor:
-  def foo(self):
-    print 'bar'
-  
+class ProcessMonitor:  
   def all_processes(self):
     procs = []
     procs_status = {}
