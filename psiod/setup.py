@@ -14,6 +14,7 @@ setup(
     ]
   },
   install_requires=[
+    'psutil>=0.6.1',
     'tornado>=2.3'
   ]
 )
