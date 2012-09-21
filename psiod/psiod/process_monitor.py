@@ -3,6 +3,8 @@ import psutil
 class ProcessMonitor:  
   def all_processes(self):
     procs = []
+    
+    # TODO: use procs_status
     procs_status = {}
     
     for p in psutil.process_iter():
@@ -17,7 +19,9 @@ class ProcessMonitor:
       except psutil.NoSuchProcess:
         pass
       else:
+        # json.dump can't encode constants
         p.dict['status'] = str(p.dict['status'])
+        
         procs.append(p.dict)
     
     return procs
