@@ -22,7 +22,7 @@ class WebSocketServer(websocket.WebSocketHandler):
     logging.debug('socket closed')
   
   def process_command(self, cmd_name):
-    cmd   = COMMANDS[cmd_name]()
-    procs = cmd.execute()
+    cmd  = COMMANDS[cmd_name]()
+    data = cmd.execute()
     
-    self.write_message(json.dumps(procs))
+    self.write_message(json.dumps(data))
