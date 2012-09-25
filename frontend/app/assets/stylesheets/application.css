@@ -24,11 +24,8 @@ header h1.selected {
 
 header h1.selected:after {
   color: #aaa;
-  font-weight: 200;
-}
-
-header h1.selected:after {
   content: ' *';
+  font-weight: 200;
 }
 
 .bg-icon {
@@ -40,6 +37,5 @@ header h1.selected:after {
 }
 
 .bg-icon path {
-  /*fill: rgba(0, 0, 0, 0.05);*/
   fill: #ddd;
 }
