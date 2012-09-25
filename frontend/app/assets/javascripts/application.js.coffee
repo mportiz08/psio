@@ -2,8 +2,16 @@
 #= require      ./vendor/underscore-min.js
 #= require      ./vendor/backbone-min.js
 #= require      ./vendor/bootstrap.min.js
-#= require_tree ./vendor
+#= require      handlebars
 #= require_self
+#= require_tree ./templates
+#= require      ./views/base_view.coffee
+#= require_tree ./views
 #= require      ./router.coffee
 #= require      ./init.coffee
 window.Psio = {}
+Psio.SCHEDULING_MODE = 'scheduling'
+Psio.MEMORY_MODE     = 'memory'
+Psio.NETWORK_MODE    = 'network'
+
+Psio.mode       = Psio.SCHEDULING_MODE
