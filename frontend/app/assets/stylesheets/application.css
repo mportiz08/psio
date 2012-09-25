@@ -4,4 +4,42 @@
  *= require_self
  *= require_tree .
  */
- 
+body {
+  background: #eee;
+}
+
+header {
+  background: #1b1b1b;
+  color: #eee;
+}
+
+header h1 {
+  font-weight: 100;
+  text-align: center;
+}
+
+header h1.selected {
+  color: #fff;
+}
+
+header h1.selected:after {
+  color: #aaa;
+  font-weight: 200;
+}
+
+header h1.selected:after {
+  content: ' *';
+}
+
+.bg-icon {
+  left: 50%;
+  margin-left: -300px;
+  position: fixed;
+  top: 80px;
+  z-index: -1;
+}
+
+.bg-icon path {
+  /*fill: rgba(0, 0, 0, 0.05);*/
+  fill: #ddd;
+}
