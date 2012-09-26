@@ -24,6 +24,8 @@ class Psio.Router extends Backbone.Router
   
   memory: ->
     console.debug 'memory route'
+    Psio.mode = Psio.MEMORY_MODE
     
   network: ->
     console.debug 'network route'
+    Psio.mode = Psio.NETWORK_MODE

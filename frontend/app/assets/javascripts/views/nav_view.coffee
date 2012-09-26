@@ -3,4 +3,7 @@ class Psio.NavView extends Psio.BaseView
   tagName: 'header'
   
   render: ->
-    @renderTemplate(mode: @options.mode)
+    @renderTemplate
+      scheduling: @options.mode is Psio.SCHEDULING_MODE
+      memory:     @options.mode is Psio.MEMORY_MODE
+      network:    @options.mode is Psio.NETWORK_MODE
