@@ -11,6 +11,7 @@ class Psio.Router extends Backbone.Router
   scheduling: ->
     console.debug 'scheduling route'
     Psio.mode = Psio.SCHEDULING_MODE
+    @setBgView()
     
     ws = new WebSocket("ws://localhost:8888")
     ws.onmessage = (event) ->
@@ -25,7 +26,13 @@ class Psio.Router extends Backbone.Router
   memory: ->
     console.debug 'memory route'
     Psio.mode = Psio.MEMORY_MODE
+    @setBgView()
     
   network: ->
     console.debug 'network route'
     Psio.mode = Psio.NETWORK_MODE
+    @setBgView()
+  
+  setBgView: (type) ->
+    Psio.bgView = new Psio.BgView(template: "bg-#{Psio.mode}")
+    $('body').append(Psio.bgView.el)

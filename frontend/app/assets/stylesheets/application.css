@@ -46,7 +46,7 @@ header a:active, header a:hover {
   color: #fff;
 }
 
-.bg-icon {
+#bg-icon {
   left: 50%;
   margin-left: -300px;
   position: fixed;
@@ -54,6 +54,6 @@ header a:active, header a:hover {
   z-index: -1;
 }
 
-.bg-icon path {
+#bg-icon path, #bg-icon circle {
   fill: #ddd;
 }

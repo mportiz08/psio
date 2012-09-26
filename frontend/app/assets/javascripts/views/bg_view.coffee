@@ -1,6 +1,5 @@
 class Psio.BgView extends Psio.BaseView
-  template:  'bg'
-  className: 'bg-icon'
+  id: 'bg-icon'
   
   render: ->
     @renderTemplate()
