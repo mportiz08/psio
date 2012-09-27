@@ -25,4 +25,5 @@ class WebSocketServer(websocket.WebSocketHandler):
     cmd  = COMMANDS[cmd_name]()
     data = cmd.execute()
     
-    self.write_message(json.dumps(data))
+    resp = dict(type='response', data=data)
+    self.write_message(json.dumps(resp))

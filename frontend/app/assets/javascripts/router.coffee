@@ -15,7 +15,11 @@ class Psio.Router extends Backbone.Router
     
     ws = new WebSocket("ws://localhost:8888")
     ws.onmessage = (event) ->
-      console.debug JSON.parse(event.data)
+      resp = JSON.parse(event.data)
+      data = resp.data
+      
+      processes = new Psio.ProcessList(new Psio.Process(proc) for proc in data)
+      console.debug processes
     ws.onopen = ->
       getAllProcessesCmd =
         type: 'command'
