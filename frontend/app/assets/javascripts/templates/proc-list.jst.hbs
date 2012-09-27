@@ -1,0 +1,14 @@
+<thead>
+  <th>Name</th>
+  <th>User</th>
+  <th>CPU</th>
+</thead>
+<tbody>
+  {{#each processes}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{username}}</td>
+      <td>{{cpu_percent}}</td>
+    </tr>
+  {{/each}}
+</tbody>

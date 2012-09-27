@@ -57,3 +57,24 @@ header a:active, header a:hover {
 #bg-icon path, #bg-icon circle {
   fill: #ddd;
 }
+
+#content {
+  padding: 25px 0;
+}
+
+.table th, .table td {
+  border-top: 1px solid #777;
+}
+
+.table-bordered {
+  border: 1px solid #777;
+  border-left: 0;
+}
+
+.table-bordered th, .table-bordered td {
+  border-left: 1px solid #777;
+}
+
+.proc-list {
+  background: #fff;
+}

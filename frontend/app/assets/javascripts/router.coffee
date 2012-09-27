@@ -18,8 +18,14 @@ class Psio.Router extends Backbone.Router
       resp = JSON.parse(event.data)
       data = resp.data
       
-      processes = new Psio.ProcessList(new Psio.Process(proc) for proc in data)
-      console.debug processes
+      procs        = (new Psio.Process(proc) for proc in data)
+      process_list = new Psio.ProcessList(procs)
+      console.debug process_list
+      
+      procsView   = new Psio.ProcessListView(collection: process_list)
+      contentView = Psio.appView.contentView
+      
+      contentView.$el.find('.container').first().append(procsView.el)
     ws.onopen = ->
       getAllProcessesCmd =
         type: 'command'
