@@ -9,9 +9,18 @@ class ProcessMonitor:
     
     for p in psutil.process_iter():
       try:
-        p.dict = p.as_dict(['username', 'get_nice', 'get_memory_info',
-          'get_memory_percent', 'get_cpu_percent',
-          'get_cpu_times', 'name', 'status'])
+        p.dict = p.as_dict([
+          'pid',
+          'username',
+          'get_nice',
+          'get_memory_info',
+          'get_memory_percent',
+          'get_cpu_percent',
+          'get_cpu_times',
+          'get_num_threads',
+          'name',
+          'status'
+        ])
         try:
           procs_status[str(p.dict['status'])] += 1
         except KeyError:

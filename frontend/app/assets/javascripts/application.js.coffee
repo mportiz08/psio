@@ -6,6 +6,7 @@
 #= require_self
 #= require_tree ./models
 #= require_tree ./collections
+#= require_tree ./helpers
 #= require_tree ./templates
 #= require      ./views/base_view.coffee
 #= require_tree ./views

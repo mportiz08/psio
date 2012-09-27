@@ -1,14 +1,20 @@
 <thead>
+  <th>PID</th>
   <th>Name</th>
   <th>User</th>
-  <th>CPU</th>
+  <th>Threads</th>
+  <th>% CPU</th>
+  <th>Memory</th>
 </thead>
 <tbody>
   {{#each processes}}
     <tr>
+      <td>{{pid}}</td>
       <td>{{name}}</td>
       <td>{{username}}</td>
-      <td>{{cpu_percent}}</td>
+      <td>{{processThreads num_threads}}</td>
+      <td>{{processCPU cpu_percent}}</td>
+      <td>{{processMemory memory_info.0.}}</td>
     </tr>
   {{/each}}
 </tbody>
