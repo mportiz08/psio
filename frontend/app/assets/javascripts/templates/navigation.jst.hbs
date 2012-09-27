@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="span4">
+      {{#if scheduling}}
+        <h1 class="selected">
+          <a href="/scheduling">scheduling</a>
+        </h1>
+      {{else}}
+        <h1>
+          <a href="/scheduling">scheduling</a>
+        </h1>
+      {{/if}}
+    </div>
+    <div class="span4">
+      {{#if memory}}
+        <h1 class="selected">
+          <a href="/memory">memory</a>
+        </h1>
+      {{else}}
+        <h1>
+          <a href="/memory">memory</a>
+        </h1>
+      {{/if}}
+    </div>
+    <div class="span4">
+      {{#if network}}
+        <h1 class="selected">
+          <a href="/network">network</a>
+        </h1>
+      {{else}}
+        <h1>
+          <a href="/network">network</a>
+        </h1>
+      {{/if}}
+    </div>
+  </div>
+</div>

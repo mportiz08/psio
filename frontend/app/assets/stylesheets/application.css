@@ -4,4 +4,77 @@
  *= require_self
  *= require_tree .
  */
- 
+body {
+  background: #eee;
+}
+
+header {
+  background: #1b1b1b;
+  color: #eee;
+}
+
+header h1 {
+  font-weight: 100;
+  text-align: center;
+}
+
+header h1:after {
+  color: #1b1b1b;
+  content: ' *';
+  font-weight: 200;
+}
+
+header h1.selected {
+  color: #fff;
+}
+
+header h1.selected:after {
+  color: #aaa;
+  content: ' *';
+  font-weight: 200;
+}
+
+header a, header a:visited, header a:active, header a:hover {
+  text-decoration: none;
+}
+
+header a, header a:visited {
+  color: #eee;
+}
+
+header a:active, header a:hover {
+  color: #fff;
+}
+
+#bg-icon {
+  left: 50%;
+  margin-left: -300px;
+  position: fixed;
+  top: 80px;
+  z-index: -1;
+}
+
+#bg-icon path, #bg-icon circle {
+  fill: #ddd;
+}
+
+#content {
+  padding: 25px 0;
+}
+
+.table th, .table td {
+  border-top: 1px solid #777;
+}
+
+.table-bordered {
+  border: 1px solid #777;
+  border-left: 0;
+}
+
+.table-bordered th, .table-bordered td {
+  border-left: 1px solid #777;
+}
+
+.proc-list {
+  background: #fff;
+}
