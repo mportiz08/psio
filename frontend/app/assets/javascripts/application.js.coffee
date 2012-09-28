@@ -11,9 +11,12 @@
 #= require_tree ./templates
 #= require      ./views/base_view.coffee
 #= require_tree ./views
+#= require      ./commands.coffee
 #= require      ./router.coffee
 #= require      ./init.coffee
+
 window.Psio = {}
+
 Psio.SCHEDULING_MODE = 'scheduling'
 Psio.MEMORY_MODE     = 'memory'
 Psio.NETWORK_MODE    = 'network'

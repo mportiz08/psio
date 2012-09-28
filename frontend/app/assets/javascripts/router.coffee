@@ -13,27 +13,27 @@ class Psio.Router extends Backbone.Router
     Psio.mode = Psio.SCHEDULING_MODE
     @setBgView()
     
+    process_list = new Psio.ProcessList()
+    
+    contentView = Psio.appView.contentView
+    schedView   = new Psio.SchedulingNavView()
+    procsView   = new Psio.ProcessListView(collection: process_list)
+    
+    contentView.$el.find('.container').first().append(schedView.el)
+    contentView.$el.find('.container').first().append(procsView.el)
+    
     ws = new WebSocket("ws://localhost:8888")
+    
     ws.onmessage = (event) ->
-      resp = JSON.parse(event.data)
-      data = resp.data
+      resp  = JSON.parse(event.data)
+      procs = resp.data
       
-      procs        = (new Psio.Process(proc) for proc in data)
-      process_list = new Psio.ProcessList(procs)
       console.debug process_list
-      
-      contentView = Psio.appView.contentView
-      schedView   = new Psio.SchedulingNavView()
-      procsView   = new Psio.ProcessListView(collection: process_list)
-      
-      contentView.$el.find('.container').first().append(schedView.el)
-      contentView.$el.find('.container').first().append(procsView.el)
+      process_list.reset(procs)
+      procsView.render()
+    
     ws.onopen = ->
-      getAllProcessesCmd =
-        type: 'command'
-        data:
-          name: 'process.getall'
-      ws.send(JSON.stringify(getAllProcessesCmd))
+      ws.send(Psio.GetAllProcessesCommand)
   
   memory: ->
     console.debug 'memory route'
