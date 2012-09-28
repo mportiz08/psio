@@ -4,4 +4,8 @@ class Psio.SchedulingNavView extends Psio.BaseView
   
   render: ->
     @renderTemplate()
+    @addTooltips()
     @
+  
+  addTooltips: ->
+    @$el.find('a[rel="tooltip"]').tooltip()
