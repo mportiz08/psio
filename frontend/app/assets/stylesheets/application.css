@@ -9,6 +9,10 @@ body {
   background: #eee;
 }
 
+[class^="icon-"], [class*=" icon-"] {
+  background-image: url("/images/glyphicons-halflings.png");
+}
+
 #bg-icon {
   left: 50%;
   margin-left: -300px;
@@ -21,6 +25,10 @@ body {
   fill: #ddd;
 }
 
-#content {
+/*#content {
   padding: 25px 0;
+}*/
+
+.page-header {
+  border: none;
 }

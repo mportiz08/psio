@@ -1,32 +1,36 @@
-<thead>
-  <th>PID</th>
-  <th>Name</th>
-  <th>User</th>
-  <th>Threads</th>
-  <th>% CPU</th>
-  <th>Memory</th>
-</thead>
-<tbody>
-  {{#each processes}}
-    <tr>
-      <td class="numeric">
-        {{pid}}
-      </td>
-      <td>
-        {{linkToProcess name}}
-      </td>
-      <td>
-        {{username}}
-      </td>
-      <td class="numeric">
-        {{processThreads num_threads}}
-      </td>
-      <td class="numeric">
-        {{processCPU cpu_percent}}
-      </td>
-      <td class="numeric">
-        {{processMemory memory_info.0.}}
-      </td>
-    </tr>
-  {{/each}}
-</tbody>
+<div class="span12">
+  <table class="proc-list table table-condensed table-bordered">
+    <thead>
+      <th>PID</th>
+      <th>Name</th>
+      <th>User</th>
+      <th>Threads</th>
+      <th>% CPU</th>
+      <th>Memory</th>
+    </thead>
+    <tbody>
+      {{#each processes}}
+        <tr>
+          <td class="numeric">
+            {{pid}}
+          </td>
+          <td>
+            {{linkToProcess name}}
+          </td>
+          <td>
+            {{username}}
+          </td>
+          <td class="numeric">
+            {{processThreads num_threads}}
+          </td>
+          <td class="numeric">
+            {{processCPU cpu_percent}}
+          </td>
+          <td class="numeric">
+            {{processMemory memory_info.0.}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

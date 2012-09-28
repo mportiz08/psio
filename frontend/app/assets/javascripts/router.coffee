@@ -22,9 +22,11 @@ class Psio.Router extends Backbone.Router
       process_list = new Psio.ProcessList(procs)
       console.debug process_list
       
-      procsView   = new Psio.ProcessListView(collection: process_list)
       contentView = Psio.appView.contentView
+      schedView   = new Psio.SchedulingNavView()
+      procsView   = new Psio.ProcessListView(collection: process_list)
       
+      contentView.$el.find('.container').first().append(schedView.el)
       contentView.$el.find('.container').first().append(procsView.el)
     ws.onopen = ->
       getAllProcessesCmd =
