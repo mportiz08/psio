@@ -1,0 +1,37 @@
+header {
+  background: #1b1b1b;
+  color: #eee;
+}
+
+header h1 {
+  font-weight: 100;
+  text-align: center;
+}
+
+header h1:after {
+  color: #1b1b1b;
+  content: ' *';
+  font-weight: 200;
+}
+
+header h1.selected {
+  color: #fff;
+}
+
+header h1.selected:after {
+  color: #aaa;
+  content: ' *';
+  font-weight: 200;
+}
+
+header a, header a:visited, header a:active, header a:hover {
+  text-decoration: none;
+}
+
+header a, header a:visited {
+  color: #eee;
+}
+
+header a:active, header a:hover {
+  color: #fff;
+}

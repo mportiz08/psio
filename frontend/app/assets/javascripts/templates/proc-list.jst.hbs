@@ -9,12 +9,24 @@
 <tbody>
   {{#each processes}}
     <tr>
-      <td>{{pid}}</td>
-      <td>{{name}}</td>
-      <td>{{username}}</td>
-      <td>{{processThreads num_threads}}</td>
-      <td>{{processCPU cpu_percent}}</td>
-      <td>{{processMemory memory_info.0.}}</td>
+      <td class="numeric">
+        {{pid}}
+      </td>
+      <td>
+        {{linkToProcess name}}
+      </td>
+      <td>
+        {{username}}
+      </td>
+      <td class="numeric">
+        {{processThreads num_threads}}
+      </td>
+      <td class="numeric">
+        {{processCPU cpu_percent}}
+      </td>
+      <td class="numeric">
+        {{processMemory memory_info.0.}}
+      </td>
     </tr>
   {{/each}}
 </tbody>
