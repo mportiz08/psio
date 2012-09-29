@@ -1,5 +1,7 @@
 class Psio.BaseView extends Backbone.View
   initialize: ->
+    @init() if @init?
+    
     @template = @options.template if @options.template?
     @render()
   

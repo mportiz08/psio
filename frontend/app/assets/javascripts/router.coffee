@@ -28,9 +28,7 @@ class Psio.Router extends Backbone.Router
       resp  = JSON.parse(event.data)
       procs = resp.data
       
-      console.debug process_list
       process_list.reset(procs)
-      procsView.render()
     
     ws.onopen = ->
       ws.send(Psio.GetAllProcessesCommand)
