@@ -4,6 +4,7 @@
 #= require      ./vendor/bootstrap.min.js
 #= require      handlebars
 #= require_self
+#= require      ./commands.coffee
 #= require_tree ./models
 #= require_tree ./collections
 #= require      ./helpers/global.coffee
@@ -11,7 +12,6 @@
 #= require_tree ./templates
 #= require      ./views/base_view.coffee
 #= require_tree ./views
-#= require      ./commands.coffee
 #= require      ./router.coffee
 #= require      ./init.coffee
 

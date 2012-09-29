@@ -27,11 +27,11 @@ class Psio.Router extends Backbone.Router
     ws.onmessage = (event) ->
       resp  = JSON.parse(event.data)
       procs = resp.data
-      
       process_list.reset(procs)
     
     ws.onopen = ->
-      ws.send(Psio.GetAllProcessesCommand)
+      psm = new Psio.ProcessMonitor(ws)
+      psm.start()
   
   memory: ->
     console.debug 'memory route'
