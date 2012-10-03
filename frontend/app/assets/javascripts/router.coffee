@@ -45,10 +45,12 @@ class Psio.Router extends Backbone.Router
     contentView = Psio.appView.contentView
     schedView   = new Psio.SchedulingNavView(template: 'scheduling-nav-cpu')
     cpusView    = new Psio.CPUListView(collection: cpuList)
+    cpuGraph    = new Psio.CPUGraphView(collection: cpuList)
     
     contentView.$el.find('.container').first().html('')
     contentView.$el.find('.container').first().append(schedView.el)
     contentView.$el.find('.container').first().append(cpusView.el)
+    contentView.$el.find('.container').first().append(cpuGraph.el)
     
     ws = new WebSocket('ws://localhost:8888')
     
