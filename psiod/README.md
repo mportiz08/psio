@@ -60,3 +60,30 @@ Here's the types of commands that can be used right now:
         ...etc
       ]
     }
+
+### Listing CPU usage
+
+**request**
+
+    {
+      type: "command",
+      data: {
+        name: "cpu.getall"
+      }
+    }
+
+**response**
+
+    {
+      type: "response",
+      data: [
+        {
+          num: 0,
+          usage: 42
+        },
+        {
+          num: 1,
+          usage: 8
+        }
+      ]
+    }

@@ -34,3 +34,9 @@ class ProcessMonitor:
         procs.append(p.dict)
     
     return procs
+  
+  def all_cpus(self):
+    cpus = []
+    for cpu_num, percent in enumerate(psutil.cpu_percent(interval=0, percpu=True)):
+      cpus.append(dict(num=cpu_num, usage=percent))
+    return cpus

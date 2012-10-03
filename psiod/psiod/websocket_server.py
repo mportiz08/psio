@@ -4,7 +4,8 @@ import logging
 from tornado import websocket
 
 COMMANDS = {
-  'process.getall': command.GetAllProcesses
+  'process.getall': command.GetAllProcesses,
+  'cpu.getall':     command.GetAllCPUs
 }
 
 class WebSocketServer(websocket.WebSocketHandler):

@@ -10,3 +10,7 @@ class MonitorCommand:
 class GetAllProcesses(MonitorCommand):
   def execute(self):
     return self.monitor.all_processes()
+
+class GetAllCPUs(MonitorCommand):
+  def execute(self):
+    return self.monitor.all_cpus()
