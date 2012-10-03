@@ -1,9 +1,10 @@
 class Psio.Router extends Backbone.Router
   routes:
-    '':           'index'
-    'scheduling': 'scheduling'
-    'memory':     'memory'
-    'network':    'network'
+    '':               'index'
+    'scheduling':     'scheduling'
+    'scheduling/cpu': 'schedulingCPU'
+    'memory':         'memory'
+    'network':        'network'
   
   index: ->
     @navigate 'scheduling', trigger: true, replace: true
@@ -13,12 +14,13 @@ class Psio.Router extends Backbone.Router
     Psio.mode = Psio.SCHEDULING_MODE
     @setBgView()
     
-    process_list = new Psio.ProcessList()
+    procList = new Psio.ProcessList()
     
     contentView = Psio.appView.contentView
     schedView   = new Psio.SchedulingNavView()
-    procsView   = new Psio.ProcessListView(collection: process_list)
+    procsView   = new Psio.ProcessListView(collection: procList)
     
+    contentView.$el.find('.container').first().html('')
     contentView.$el.find('.container').first().append(schedView.el)
     contentView.$el.find('.container').first().append(procsView.el)
     
@@ -27,10 +29,36 @@ class Psio.Router extends Backbone.Router
     ws.onmessage = (event) ->
       resp  = JSON.parse(event.data)
       procs = resp.data
-      process_list.reset(procs)
+      procList.reset(procs)
     
     ws.onopen = ->
       psm = new Psio.ProcessMonitor(ws)
+      psm.start()
+  
+  schedulingCPU: ->
+    console.debug 'scheduling/cpu route'
+    Psio.mode = Psio.SCHEDULING_MODE
+    @setBgView()
+    
+    cpuList = new Psio.CPUList()
+    
+    contentView = Psio.appView.contentView
+    schedView   = new Psio.SchedulingNavView()
+    cpusView    = new Psio.CPUListView(collection: cpuList)
+    
+    contentView.$el.find('.container').first().html('')
+    contentView.$el.find('.container').first().append(schedView.el)
+    contentView.$el.find('.container').first().append(cpusView.el)
+    
+    ws = new WebSocket('ws://localhost:8888')
+    
+    ws.onmessage = (event) ->
+      resp = JSON.parse(event.data)
+      cpus = resp.data
+      cpuList.reset(cpus)
+    
+    ws.onopen = ->
+      psm = new Psio.ProcessMonitor(ws, Psio.GetAllCPUsCommand)
       psm.start()
   
   memory: ->
