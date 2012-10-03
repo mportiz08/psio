@@ -43,7 +43,7 @@ class Psio.Router extends Backbone.Router
     cpuList = new Psio.CPUList()
     
     contentView = Psio.appView.contentView
-    schedView   = new Psio.SchedulingNavView()
+    schedView   = new Psio.SchedulingNavView(template: 'scheduling-nav-cpu')
     cpusView    = new Psio.CPUListView(collection: cpuList)
     
     contentView.$el.find('.container').first().html('')
