@@ -8,7 +8,7 @@ Psio.slug = (resource) ->
 
 progressBar = (percent) ->
   html = """
-  <div class="progress progress-success progress-striped">
+  <div class="progress progress-success progress-striped active">
     <div class="bar" style="width: #{percent}%"></div>
   </div>
   """

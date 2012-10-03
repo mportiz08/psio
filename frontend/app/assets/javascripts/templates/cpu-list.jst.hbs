@@ -1,5 +1,17 @@
 <div class="span12">
-  {{#each cpus}}
-    {{progressBar usage}}
-  {{/each}}
+  <div class="container">
+    {{#each cpus}}
+      <div class="row">
+        <div class="span1">
+          <strong>CPU {{num}}</strong>
+        </div>
+        <div class="span10">
+          {{progressBar usage}}
+        </div>
+        <div class="span1">
+          {{usage}}%
+        </div>
+      </div>
+    {{/each}}
+  </div>
 </div>
