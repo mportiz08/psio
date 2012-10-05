@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'psio/models'
 
 module Psio
   class EverythingExceptPattern

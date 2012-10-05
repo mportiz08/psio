@@ -1,0 +1,3 @@
+psiod: psiod
+redis: redis-server
+thin:  bundle exec thin start
