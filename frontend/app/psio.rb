@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'json'
 require 'psio/models'
 
 module Psio
@@ -19,6 +20,11 @@ module Psio
     enable :logging
     
     set :public_folder, File.join(File.dirname(__FILE__), '..', 'public')
+    
+    get '/cpu/:id', :provides => 'json' do
+      content_type :json
+      CpuMetric.get(params[:id]).usage_history.to_json
+    end
     
     get EverythingExceptPattern.new(/\/images\/.*/), :provides => 'html' do
       erb :index
