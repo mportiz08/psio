@@ -13,9 +13,11 @@ class Psio.CPUGraphView extends Psio.BaseView
   
   updateGraph: ->
     @createGraph() unless @graph?
+    @graph.series[0].data = @model.usagePlots()
     @graph.render()
   
   createGraph: ->
+    console.log @model.usagePlots()
     @graph = new Rickshaw.Graph
       element:  @$el.find('#cpu-graph').get(0)
       renderer: 'area'
@@ -27,15 +29,8 @@ class Psio.CPUGraphView extends Psio.BaseView
         name:  'usage %'
         color: 'rgba(173, 216, 230, 0.8)'
         stroke: 'rgba(0, 0, 0, 0.3)'
-        data: [ 
-          { x: 0, y: 40 } 
-          { x: 1, y: 49 } 
-          { x: 2, y: 38 } 
-          { x: 3, y: 30 } 
-          { x: 4, y: 32 }
-        ]
+        data:   @model.usagePlots()
       }]
-    #@graph.renderer.unstack = true
     
     @legend = new Rickshaw.Graph.Legend
       graph: @graph,
