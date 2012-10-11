@@ -6,5 +6,4 @@ class Psio.CPUDetailView extends Psio.BaseView
     @model.on 'change', @render, @
   
   render: ->
-    console.debug "rendering cpu", @model
     @renderTemplate(cpu: @model.toJSON())

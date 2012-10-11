@@ -1,5 +1,6 @@
 class Psio.CPU extends Backbone.Model
   initialize: ->
+    @resetUsage()
     @on 'change', @updatePersistentData
   
   currentUsage: ->
@@ -11,7 +12,6 @@ class Psio.CPU extends Backbone.Model
   
   updateUsage: ->
     current = @currentUsage()
-    console.log 'yo', current
     path = "cpu#{@get('num')}.usage"
     rawData = localStorage[path]
     data = []
@@ -19,11 +19,15 @@ class Psio.CPU extends Backbone.Model
     data.push current
     localStorage[path] = JSON.stringify(data)
   
+  resetUsage: ->
+    path = "cpu#{@get('num')}.usage"
+    localStorage.removeItem(path)
+  
   usagePlots: ->
     path = "cpu#{@get('num')}.usage"
     rawData = localStorage[path]
     if rawData?
       data = JSON.parse(rawData)
-      { x: item.time, y: item.usage } for item in data
+      { x: idx, y: item.usage } for item, idx in data
     else
       [{ x: 0, y: 0 }]

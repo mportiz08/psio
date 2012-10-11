@@ -67,7 +67,7 @@ class Psio.Router extends Backbone.Router
     Psio.mode = Psio.SCHEDULING_MODE
     @setBgView()
     
-    cpu = new Psio.CPU()
+    cpu = new Psio.CPU(num: cpuNum)
     
     contentView = Psio.appView.contentView
     cpuView     = new Psio.CPUDetailView(model: cpu)
