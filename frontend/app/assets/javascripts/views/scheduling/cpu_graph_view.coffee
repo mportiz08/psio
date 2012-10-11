@@ -3,16 +3,18 @@ class Psio.CPUGraphView extends Psio.BaseView
   className: 'row'
   
   init: ->
-    @model.on 'change', @render, @
+    @model.on 'change', @renderGraph, @
   
   render: ->
-    @renderTemplate() unless @graph?
-    @updateGraph()
+    @renderTemplate()
+    @createGraph()
     @
   
-  updateGraph: ->
-    @createGraph() unless @graph?
-    @graph.series[0].data = @model.usagePlots()
+  renderGraph: ->
+    @updateGraph()
+    
+    @axisX.render()
+    @axisY.render()
     @graph.render()
   
   createGraph: ->
@@ -38,7 +40,6 @@ class Psio.CPUGraphView extends Psio.BaseView
       graph: @graph
     @axisY = new Rickshaw.Graph.Axis.Y
       graph: @graph
-    
-    @axisX.render()
-    @axisY.render()
-    @graph.render()
+  
+  updateGraph: ->
+    @graph.series[0].data = @model.usagePlots()
