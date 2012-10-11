@@ -6,7 +6,6 @@ class Psio.CPUGraphView extends Psio.BaseView
     @model.on 'change', @render, @
   
   render: ->
-    console.debug 'rendering cpu graph', @model
     @renderTemplate() unless @graph?
     @updateGraph()
     @
@@ -17,7 +16,6 @@ class Psio.CPUGraphView extends Psio.BaseView
     @graph.render()
   
   createGraph: ->
-    console.log @model.usagePlots()
     @graph = new Rickshaw.Graph
       element:  @$el.find('#cpu-graph').get(0)
       renderer: 'line'
@@ -29,7 +27,7 @@ class Psio.CPUGraphView extends Psio.BaseView
       series:   [{
         name:  'usage %'
         color: '#30c020'
-        data:   @model.usagePlots()
+        data:  [{ x: 0, y: 0 }]
       }]
     
     @legend = new Rickshaw.Graph.Legend

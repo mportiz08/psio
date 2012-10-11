@@ -7,6 +7,7 @@
 #= require      handlebars
 #= require_self
 #= require      ./commands.coffee
+#= require      ./store.coffee
 #= require_tree ./models
 #= require_tree ./collections
 #= require      ./helpers/global.coffee
