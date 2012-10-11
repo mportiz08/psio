@@ -20,15 +20,15 @@ class Psio.CPUGraphView extends Psio.BaseView
     console.log @model.usagePlots()
     @graph = new Rickshaw.Graph
       element:  @$el.find('#cpu-graph').get(0)
-      renderer: 'area'
+      renderer: 'line'
       width:    960
-      height:   400
-      max:      100
-      stroke:   true
+      height:   500
+      min:      -1  # real min is 0, using -1 for display purposes
+      max:      103 # real max is 100, using 103 for display purposes
+      interpolation: 'linear'
       series:   [{
         name:  'usage %'
-        color: 'rgba(173, 216, 230, 0.8)'
-        stroke: 'rgba(0, 0, 0, 0.3)'
+        color: '#30c020'
         data:   @model.usagePlots()
       }]
     
@@ -36,4 +36,11 @@ class Psio.CPUGraphView extends Psio.BaseView
       graph: @graph,
       element: @$el.find('#cpu-graph').get(0)
     
+    @axisX = new Rickshaw.Graph.Axis.Time
+      graph: @graph
+    @axisY = new Rickshaw.Graph.Axis.Y
+      graph: @graph
+    
+    @axisX.render()
+    @axisY.render()
     @graph.render()
