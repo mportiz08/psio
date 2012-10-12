@@ -1,6 +1,11 @@
+import os
 import psutil
 
-class ProcessMonitor:  
+class ProcessMonitor:
+  def __init__(self, limited_by_user=True):
+    self.user = os.environ['USER']
+    self.limited_by_user = limited_by_user
+  
   def all_processes(self):
     procs = []
     
@@ -31,7 +36,11 @@ class ProcessMonitor:
         # json.dump can't encode constants
         p.dict['status'] = str(p.dict['status'])
         
-        procs.append(p.dict)
+        if self.limited_by_user:
+          if self.user == p.dict['username']:
+            procs.append(p.dict)
+        else:
+          procs.append(p.dict)
     
     return procs
   
