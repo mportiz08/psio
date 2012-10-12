@@ -12,13 +12,12 @@ class Psio.Router extends Backbone.Router
   
   scheduling: ->
     console.debug 'scheduling route'
-    Psio.mode = Psio.SCHEDULING_MODE
-    @setBgView()
+    Psio.setSchedulingMode()
     
     procList = new Psio.ProcessList()
     
-    schedView   = new Psio.SchedulingNavView()
-    procsView   = new Psio.ProcessListView(collection: procList)
+    schedView = new Psio.SchedulingNavView()
+    procsView = new Psio.ProcessListView(collection: procList)
     
     Psio.content.html('')
     Psio.content.append(schedView.el)
@@ -37,13 +36,12 @@ class Psio.Router extends Backbone.Router
   
   cpuList: ->
     console.debug 'scheduling/cpu route'
-    Psio.mode = Psio.SCHEDULING_MODE
-    @setBgView()
+    Psio.setSchedulingMode()
     
     cpuList = new Psio.CPUList()
     
-    schedView   = new Psio.SchedulingNavView(template: 'scheduling-nav-cpu')
-    cpusView    = new Psio.CPUListView(collection: cpuList)
+    schedView = new Psio.SchedulingNavView(template: 'scheduling-nav-cpu')
+    cpusView  = new Psio.CPUListView(collection: cpuList)
     
     Psio.content.html('')
     Psio.content.append(schedView.el)
@@ -62,13 +60,12 @@ class Psio.Router extends Backbone.Router
   
   cpuDetail: (cpuNum) ->
     console.debug 'scheduling/cpu/:num route'
-    Psio.mode = Psio.SCHEDULING_MODE
-    @setBgView()
+    Psio.setSchedulingMode()
     
     cpu = new Psio.CPU(num: cpuNum)
     
-    cpuView     = new Psio.CPUDetailView(model: cpu)
-    cpuGraph    = new Psio.CPUGraphView(model: cpu)
+    cpuView  = new Psio.CPUDetailView(model: cpu)
+    cpuGraph = new Psio.CPUGraphView(model: cpu)
     
     Psio.content.html('')
     Psio.content.append(cpuView.el)
@@ -87,14 +84,8 @@ class Psio.Router extends Backbone.Router
   
   memory: ->
     console.debug 'memory route'
-    Psio.mode = Psio.MEMORY_MODE
-    @setBgView()
+    Psio.setMemoryMode()
     
   network: ->
     console.debug 'network route'
-    Psio.mode = Psio.NETWORK_MODE
-    @setBgView()
-  
-  setBgView: (type) ->
-    Psio.bgView = new Psio.BgView(template: "bg-#{Psio.mode}")
-    $('body').append(Psio.bgView.el)
+    Psio.setNetworkMode()
