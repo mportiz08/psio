@@ -10,16 +10,21 @@ class Psio.VirtualMemChart extends Psio.BaseView
     @
   
   renderChart: ->
-    w = 300
-    h = 300
-    r = 100
+    w = 500
+    h = 500
+    r = 250
     
     chart = $('#virtual-mem-chart')
     color = d3.scale.category20c()
 
-    data = [{"label":"one", "value":20}, 
-            {"label":"two", "value":50}, 
-            {"label":"three", "value":30}]
+    total = @model.attributes.total
+    # format values for pie chart
+    data = _.map @model.attributes, (v, k) ->
+      label: k
+      value: (v / total) * 100
+    # filter out free, wired, active, and inactive portions
+    data = _.select data, (item) ->
+      _.contains ['free', 'wired', 'active', 'inactive'], item.label
     
     chart.html('')
     vis = d3.select(chart.get(0))
