@@ -5,7 +5,8 @@ from tornado import websocket
 
 COMMANDS = {
   'process.getall': command.GetAllProcesses,
-  'cpu.getall':     command.GetAllCPUs
+  'cpu.getall':     command.GetAllCPUs,
+  'memory.getall':  command.GetAllMemory
 }
 
 class WebSocketServer(websocket.WebSocketHandler):

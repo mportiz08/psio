@@ -87,3 +87,37 @@ Here's the types of commands that can be used right now:
         }
       ]
     }
+
+### Listing memory usage
+
+**request**
+
+    {
+      type: "command",
+      data: {
+        name: "memory.getall"
+      }
+    }
+
+**response**
+
+    {
+      "virtual": {
+        "active": 2276331520,
+        "available": 12781264896,
+        "free": 12372344832,
+        "inactive": 408920064,
+        "percent": 25.6,
+        "total": 17179869184,
+        "used": 4798832640,
+        "wired": 2113581056
+      },
+      "swap": {
+        "free": 1048395776,
+        "percent": 67.5,
+        "sin": 62363017216,
+        "sout": 0,
+        "total": 3221225472,
+        "used": 2172829696
+      }
+    }
