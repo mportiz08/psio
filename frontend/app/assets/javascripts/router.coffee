@@ -17,13 +17,12 @@ class Psio.Router extends Backbone.Router
     
     procList = new Psio.ProcessList()
     
-    contentView = Psio.appView.contentView
     schedView   = new Psio.SchedulingNavView()
     procsView   = new Psio.ProcessListView(collection: procList)
     
-    contentView.$el.find('.container').first().html('')
-    contentView.$el.find('.container').first().append(schedView.el)
-    contentView.$el.find('.container').first().append(procsView.el)
+    Psio.content.html('')
+    Psio.content.append(schedView.el)
+    Psio.content.append(procsView.el)
     
     ws = new WebSocket("ws://localhost:8888")
     
@@ -43,13 +42,12 @@ class Psio.Router extends Backbone.Router
     
     cpuList = new Psio.CPUList()
     
-    contentView = Psio.appView.contentView
     schedView   = new Psio.SchedulingNavView(template: 'scheduling-nav-cpu')
     cpusView    = new Psio.CPUListView(collection: cpuList)
     
-    contentView.$el.find('.container').first().html('')
-    contentView.$el.find('.container').first().append(schedView.el)
-    contentView.$el.find('.container').first().append(cpusView.el)
+    Psio.content.html('')
+    Psio.content.append(schedView.el)
+    Psio.content.append(cpusView.el)
     
     ws = new WebSocket('ws://localhost:8888')
     
@@ -69,13 +67,12 @@ class Psio.Router extends Backbone.Router
     
     cpu = new Psio.CPU(num: cpuNum)
     
-    contentView = Psio.appView.contentView
     cpuView     = new Psio.CPUDetailView(model: cpu)
     cpuGraph    = new Psio.CPUGraphView(model: cpu)
     
-    contentView.$el.find('.container').first().html('')
-    contentView.$el.find('.container').first().append(cpuView.el)
-    contentView.$el.find('.container').first().append(cpuGraph.el)
+    Psio.content.html('')
+    Psio.content.append(cpuView.el)
+    Psio.content.append(cpuGraph.el)
     
     ws = new WebSocket('ws://localhost:8888')
     
