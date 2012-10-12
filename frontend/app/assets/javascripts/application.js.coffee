@@ -24,4 +24,19 @@ Psio.SCHEDULING_MODE = 'scheduling'
 Psio.MEMORY_MODE     = 'memory'
 Psio.NETWORK_MODE    = 'network'
 
-Psio.mode       = Psio.SCHEDULING_MODE
+Psio.setMode = (mode) ->
+  Psio.appView.navView.trigger('setmode', mode: mode)
+  Psio.setBackground(mode)
+
+Psio.setBackground = (mode) ->
+  Psio.bgView = new Psio.BgView(template: "bg-#{mode}")
+  $('body').append(Psio.bgView.el)
+
+Psio.setSchedulingMode = ->
+  Psio.setMode(Psio.SCHEDULING_MODE)
+
+Psio.setMemoryMode = ->
+  Psio.setMode(Psio.MEMORY_MODE)
+
+Psio.setNetworkMode = ->
+  Psio.setMode(Psio.NETWORK_MODE)

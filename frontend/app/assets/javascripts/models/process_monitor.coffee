@@ -4,8 +4,8 @@ class Psio.ProcessMonitor
   refresh: (ws) ->
     ws.send(@cmd)
   
-  start: ->
+  start: (interval=1000) ->
     @refresh(@ws)
     window.setInterval =>
       @refresh(@ws)
-    , 1000
+    , interval
