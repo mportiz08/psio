@@ -8,10 +8,6 @@ class ProcessMonitor:
   
   def all_processes(self):
     procs = []
-    
-    # TODO: use procs_status
-    procs_status = {}
-    
     for p in psutil.process_iter():
       try:
         p.dict = p.as_dict([
@@ -26,10 +22,6 @@ class ProcessMonitor:
           'name',
           'status'
         ])
-        try:
-          procs_status[str(p.dict['status'])] += 1
-        except KeyError:
-          procs_status[str(p.dict['status'])] = 1
       except psutil.NoSuchProcess:
         pass
       else:
