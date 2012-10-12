@@ -86,6 +86,11 @@ class Psio.Router extends Backbone.Router
     console.debug 'memory route'
     Psio.setMemoryMode()
     
+    memView = new Psio.MemoryNavView()
+    
+    Psio.content.html('')
+    Psio.content.append(memView.el)
+    
   network: ->
     console.debug 'network route'
     Psio.setNetworkMode()
