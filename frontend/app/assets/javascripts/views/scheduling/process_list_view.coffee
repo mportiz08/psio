@@ -6,5 +6,4 @@ class Psio.ProcessListView extends Psio.BaseView
     @collection.on 'reset', @render, @
   
   render: ->
-    console.debug "rendering process list", @collection
     @renderTemplate(processes: @collection.toJSON())

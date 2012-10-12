@@ -2,7 +2,6 @@ class Psio.ProcessMonitor
   constructor: (@ws, @cmd=Psio.GetAllProcessesCommand) ->
   
   refresh: (ws) ->
-    console.debug 'refreshing'
     ws.send(@cmd)
   
   start: ->

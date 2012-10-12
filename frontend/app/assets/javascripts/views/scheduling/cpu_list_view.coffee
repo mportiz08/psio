@@ -6,5 +6,4 @@ class Psio.CPUListView extends Psio.BaseView
     @collection.on 'reset', @render, @
   
   render: ->
-    console.debug "rendering cpu list", @collection
     @renderTemplate(cpus: @collection.toJSON())

@@ -2,9 +2,12 @@
 #= require      ./vendor/underscore-min.js
 #= require      ./vendor/backbone-min.js
 #= require      ./vendor/bootstrap.min.js
+#= require      ./vendor/d3-v2.min.js
+#= require      ./vendor/rickshaw-1.1.2.min.js
 #= require      handlebars
 #= require_self
 #= require      ./commands.coffee
+#= require      ./store.coffee
 #= require_tree ./models
 #= require_tree ./collections
 #= require      ./helpers/global.coffee
