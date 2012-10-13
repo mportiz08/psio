@@ -1,13 +1,24 @@
 class Psio.VirtualMemChart extends Psio.BaseView
   template:  'virtual-mem-chart'
-  className: 'row'
+  className: 'row memory'
   
   init: ->
+    @model.on 'change', @renderInfo, @
     @model.on 'change', @renderChart, @
   
   render: ->
     @renderTemplate()
     @
+  
+  renderInfo: ->
+    @renderVirtualInfo()
+    @renderSwapInfo()
+  
+  renderInfo: ->
+    element  = $('#virtual-mem-info')
+    template = 'virtual-mem-info'
+    data     = @model.attributes
+    @renderTemplateForElement(element, template, data)
   
   renderChart: ->
     w = 500
