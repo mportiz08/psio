@@ -86,6 +86,26 @@ class Psio.Router extends Backbone.Router
     console.debug 'memory route'
     Psio.setMemoryMode()
     
+    memory = new Psio.Memory()
+    
+    memNav  = new Psio.MemoryNavView()
+    memView = new Psio.MemoryView(model: memory)
+    
+    Psio.content.html('')
+    Psio.content.append(memNav.el)
+    Psio.content.append(memView.el)
+    
+    ws = new WebSocket('ws://localhost:8888')
+    
+    ws.onmessage = (event) ->
+      resp = JSON.parse(event.data)
+      mem  = resp.data
+      memory.set(mem)
+    
+    ws.onopen = ->
+      psm = new Psio.ProcessMonitor(ws, Psio.GetAllMemoryCommand)
+      psm.start(5000)
+    
   network: ->
     console.debug 'network route'
     Psio.setNetworkMode()

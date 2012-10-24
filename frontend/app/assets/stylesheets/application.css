@@ -28,3 +28,7 @@ body {
 .page-header {
   border: none;
 }
+
+#content h2 {
+  font-weight: lighter;
+}

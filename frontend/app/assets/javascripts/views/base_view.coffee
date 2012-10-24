@@ -8,3 +8,6 @@ class Psio.BaseView extends Backbone.View
   renderTemplate: (data) ->
     @$el.html(JST["templates/#{@template}"](data))
     @
+  
+  renderTemplateForElement: (el, template, data) ->
+    el.html(JST["templates/#{template}"](data))

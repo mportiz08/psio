@@ -14,3 +14,11 @@
 td.numeric {
   text-align: right;
 }
+
+.memory table {
+  background: #fff;
+}
+
+.memory table td:first-child {
+  font-weight: bold;
+}

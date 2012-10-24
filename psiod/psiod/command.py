@@ -14,3 +14,7 @@ class GetAllProcesses(MonitorCommand):
 class GetAllCPUs(MonitorCommand):
   def execute(self):
     return self.monitor.all_cpus()
+
+class GetAllMemory(MonitorCommand):
+  def execute(self):
+    return self.monitor.all_memory()

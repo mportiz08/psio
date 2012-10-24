@@ -41,3 +41,8 @@ class ProcessMonitor:
     for cpu_num, percent in enumerate(psutil.cpu_percent(interval=0, percpu=True)):
       cpus.append(dict(num=cpu_num, usage=percent))
     return cpus
+  
+  def all_memory(self):
+    virtual = psutil.virtual_memory()._asdict()
+    swap    = psutil.swap_memory()._asdict()
+    return dict(virtual=virtual, swap=swap)

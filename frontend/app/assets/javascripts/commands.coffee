@@ -4,3 +4,4 @@ class Psio.Command
 
 Psio.GetAllProcessesCommand = Psio.Command.create('process.getall')
 Psio.GetAllCPUsCommand      = Psio.Command.create('cpu.getall')
+Psio.GetAllMemoryCommand    = Psio.Command.create('memory.getall')
