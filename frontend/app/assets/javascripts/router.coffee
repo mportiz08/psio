@@ -86,21 +86,21 @@ class Psio.Router extends Backbone.Router
     console.debug 'memory route'
     Psio.setMemoryMode()
     
-    virtualMemory = new Psio.VirtualMemory()
+    memory = new Psio.Memory()
     
-    memView      = new Psio.MemoryNavView()
-    virtualChart = new Psio.VirtualMemChart(model: virtualMemory)
+    memNav  = new Psio.MemoryNavView()
+    memView = new Psio.MemoryView(model: memory)
     
     Psio.content.html('')
+    Psio.content.append(memNav.el)
     Psio.content.append(memView.el)
-    Psio.content.append(virtualChart.el)
     
     ws = new WebSocket('ws://localhost:8888')
     
     ws.onmessage = (event) ->
       resp = JSON.parse(event.data)
       mem  = resp.data
-      virtualMemory.set(mem.virtual)
+      memory.set(mem)
     
     ws.onopen = ->
       psm = new Psio.ProcessMonitor(ws, Psio.GetAllMemoryCommand)

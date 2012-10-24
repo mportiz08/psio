@@ -2,35 +2,25 @@ class Psio.VirtualMemChart extends Psio.BaseView
   template:  'virtual-mem-chart'
   className: 'row memory'
   
-  init: ->
-    @model.on 'change', @renderInfo, @
-    @model.on 'change', @renderChart, @
-  
   render: ->
     @renderTemplate()
+    @renderChart()
     @
-  
-  renderInfo: ->
-    @renderVirtualInfo()
-    @renderSwapInfo()
-  
-  renderInfo: ->
-    element  = $('#virtual-mem-info')
-    template = 'virtual-mem-info'
-    data     = @model.attributes
-    @renderTemplateForElement(element, template, data)
   
   renderChart: ->
     w = 500
     h = 500
     r = 250
     
-    chart = $('#virtual-mem-chart')
+    chart = @$el.find('#virtual-mem-chart')
+    
+    return @ unless (chart? && @model.has('virtual'))
+    
     color = d3.scale.category20c()
 
-    total = @model.attributes.total
+    total = @model.get('virtual').total
     # format values for pie chart
-    data = _.map @model.attributes, (v, k) ->
+    data = _.map @model.get('virtual'), (v, k) ->
       label: k
       value: (v / total) * 100
     # filter out free, wired, active, and inactive portions
@@ -72,3 +62,5 @@ class Psio.VirtualMemChart extends Psio.BaseView
         .attr("text-anchor", "middle")
         .text((d, i) ->
           data[i].label)
+    
+    @
