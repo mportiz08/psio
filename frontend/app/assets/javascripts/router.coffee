@@ -5,6 +5,7 @@ class Psio.Router extends Backbone.Router
     'scheduling/cpu':      'cpuList'
     'scheduling/cpu/:num': 'cpuDetail'
     'memory':              'memory'
+    'memory/disk':         'memoryDisk'
     'network':             'network'
   
   index: ->
@@ -124,3 +125,12 @@ class Psio.Router extends Backbone.Router
   network: ->
     console.debug 'network route'
     Psio.setNetworkMode()
+  
+  memoryDisk: ->
+    console.debug 'memory/disk route'
+    Psio.setMemoryMode()
+    
+    memNav = new Psio.MemoryNavView(template: 'memory-nav-disk')
+    
+    Psio.content.html('')
+    Psio.content.append(memNav.el)
