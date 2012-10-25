@@ -42,4 +42,4 @@ class Psio.CPUGraphView extends Psio.BaseView
       graph: @graph
   
   updateGraph: ->
-    @graph.series[0].data = @model.usagePlots()
+    @graph.series[0].data = @model.graphPlots()
