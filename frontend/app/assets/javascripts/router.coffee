@@ -43,16 +43,30 @@ class Psio.Router extends Backbone.Router
     schedView = new Psio.SchedulingNavView(template: 'scheduling-nav-cpu')
     cpusView  = new Psio.CPUListView(collection: cpuList)
     
+    graphOpts =
+      collection: cpuList
+      graphEl:    '#cpu-list-graph'
+      template:   'cpu-list-graph'
+    graphs    = new Psio.GraphCollectionView(graphOpts)
+    
     Psio.content.html('')
     Psio.content.append(schedView.el)
     Psio.content.append(cpusView.el)
+    Psio.content.append(graphs.el)
     
     ws = new WebSocket('ws://localhost:8888')
     
     ws.onmessage = (event) ->
       resp = JSON.parse(event.data)
       cpus = resp.data
-      cpuList.reset(cpus)
+      
+      if cpuList.isEmpty()
+        cpuList.reset(cpus)
+      else
+        cpuList.each (cpu, i) ->
+          cpu.set(cpus[i])
+          cpu.updateMetrics()
+        graphs.renderGraph()
     
     ws.onopen = ->
       psm = new Psio.ProcessMonitor(ws, Psio.GetAllCPUsCommand)
@@ -77,6 +91,7 @@ class Psio.Router extends Backbone.Router
       resp = JSON.parse(event.data)
       cpus = resp.data
       cpu.set(cpus[cpuNum])
+      cpu.updateMetrics()
     
     ws.onopen = ->
       psm = new Psio.ProcessMonitor(ws, Psio.GetAllCPUsCommand)

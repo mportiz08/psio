@@ -1,7 +1,6 @@
 class Psio.CPU extends Backbone.Model
   initialize: ->
     @metrics = new Psio.Store("cpu#{@get('num')}.usage", [])
-    @on 'change', @updateMetrics
   
   currentUsage: ->
     time:  new Date().getTime()
@@ -13,7 +12,7 @@ class Psio.CPU extends Backbone.Model
   updateUsage: ->
     @metrics.push @currentUsage()
   
-  usagePlots: ->
+  graphPlots: ->
     plots = [{ x: 0, y: 0 }]
     
     metrics = @metrics.get()
@@ -21,3 +20,6 @@ class Psio.CPU extends Backbone.Model
       plots = ({ x: i, y: metric.usage } for metric, i in metrics)
     
     plots
+  
+  toString: ->
+    "cpu #{@get('num')}"
