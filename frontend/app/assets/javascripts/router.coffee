@@ -130,7 +130,20 @@ class Psio.Router extends Backbone.Router
     console.debug 'memory/disk route'
     Psio.setMemoryMode()
     
+    memory = new Psio.Memory()
+    
     memNav = new Psio.MemoryNavView(template: 'memory-nav-disk')
     
     Psio.content.html('')
     Psio.content.append(memNav.el)
+    
+    ws = new WebSocket('ws://localhost:8888')
+    
+    ws.onmessage = (event) ->
+      resp = JSON.parse(event.data)
+      mem  = resp.data
+      console.log 'yo', mem
+    
+    ws.onopen = (event) ->
+      psm = new Psio.ProcessMonitor(ws, Psio.GetAllDisksCommand)
+      psm.start(5000)

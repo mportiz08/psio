@@ -18,3 +18,7 @@ class GetAllCPUs(MonitorCommand):
 class GetAllMemory(MonitorCommand):
   def execute(self):
     return self.monitor.all_memory()
+
+class GetAllDisks(MonitorCommand):
+  def execute(self):
+    return self.monitor.all_disks()

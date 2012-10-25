@@ -102,22 +102,57 @@ Here's the types of commands that can be used right now:
 **response**
 
     {
-      "virtual": {
-        "active": 2276331520,
-        "available": 12781264896,
-        "free": 12372344832,
-        "inactive": 408920064,
-        "percent": 25.6,
-        "total": 17179869184,
-        "used": 4798832640,
-        "wired": 2113581056
-      },
-      "swap": {
-        "free": 1048395776,
-        "percent": 67.5,
-        "sin": 62363017216,
-        "sout": 0,
-        "total": 3221225472,
-        "used": 2172829696
+      type: "response",
+      data: {
+        virtual: {
+          active: 2276331520,
+          available: 12781264896,
+          free: 12372344832,
+          inactive: 408920064,
+          percent: 25.6,
+          total: 17179869184,
+          used: 4798832640,
+          wired: 2113581056
+        },
+        swap: {
+          free: 1048395776,
+          percent: 67.5,
+          sin: 62363017216,
+          sout: 0,
+          total: 3221225472,
+          used: 2172829696
+        }
       }
+    }
+
+### Listing disk partitions
+
+**request**
+
+    {
+      type: "command",
+      data: {
+        name: "disk.getall"
+      }
+    }
+
+**response**
+
+    {
+      type: "response",
+      data: [
+        {
+          device: "/dev/sda3",
+          mountpoint: "/",
+          fstype: "ext4",
+          opts: "rw,errors=remount-ro"
+        },
+        {
+          device: "/dev/sda7",
+          mountpoint: "/home",
+          fstype: "ext4",
+          opts: "rw"
+        },
+        ...etc
+      ]
     }
