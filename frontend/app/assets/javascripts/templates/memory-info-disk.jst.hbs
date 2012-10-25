@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="span5">
+    {{#each disks}}
+      <h2>{{device}}</h2>
+      <table class="table table-condensed table-bordered">
+        <tbody>
+          <tr>
+            <td>FS:</td>
+            <td>{{fstype}}</td>
+          </tr>
+          <tr>
+            <td>Mount:</td>
+            <td>{{mountpoint}}</td>
+          </tr>
+          <tr>
+            <td>Options:</td>
+            <td>{{opts}}</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/each}}
+  </div>
+</div>

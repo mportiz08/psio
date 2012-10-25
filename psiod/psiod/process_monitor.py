@@ -46,3 +46,9 @@ class ProcessMonitor:
     virtual = psutil.virtual_memory()._asdict()
     swap    = psutil.swap_memory()._asdict()
     return dict(virtual=virtual, swap=swap)
+  
+  def all_disks(self):
+    disks = []
+    for disk in psutil.disk_partitions():
+      disks.append(disk._asdict())
+    return disks
