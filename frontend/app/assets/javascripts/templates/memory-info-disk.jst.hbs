@@ -1,68 +1,23 @@
-{{#with memory}}
-  <div class="row">
-    <div class="span5">
-      <h2>Virtual</h2>
+<div class="row">
+  <div class="span5">
+    {{#each disks}}
+      <h2>{{device}}</h2>
       <table class="table table-condensed table-bordered">
         <tbody>
           <tr>
-            <td>Total:</td>
-            <td class="numeric">{{processMemory virtual.total}}</td>
+            <td>FS:</td>
+            <td>{{fstype}}</td>
           </tr>
           <tr>
-            <td>Used:</td>
-            <td class="numeric">{{processMemory virtual.used}}</td>
+            <td>Mount:</td>
+            <td>{{mountpoint}}</td>
           </tr>
           <tr>
-            <td>Free:</td>
-            <td class="numeric">{{processMemory virtual.free}}</td>
-          </tr>
-          <tr>
-            <td>Available:</td>
-            <td class="numeric">{{processMemory virtual.available}}</td>
-          </tr>
-          <tr>
-            <td>Active:</td>
-            <td class="numeric">{{processMemory virtual.active}}</td>
-          </tr>
-          <tr>
-            <td>Inactive:</td>
-            <td class="numeric">{{processMemory virtual.inactive}}</td>
-          </tr>
-          <tr>
-            <td>Wired:</td>
-            <td class="numeric">{{processMemory virtual.wired}}</td>
+            <td>Options:</td>
+            <td>{{opts}}</td>
           </tr>
         </tbody>
       </table>
-    </div>
+    {{/each}}
   </div>
-  <div class="row">
-    <div class="span5">
-      <h2>Swap</h2>
-      <table class="table table-condensed table-bordered">
-        <tbody>
-          <tr>
-            <td>Total:</td>
-            <td class="numeric">{{processMemory swap.total}}</td>
-          </tr>
-          <tr>
-            <td>Used:</td>
-            <td class="numeric">{{processMemory swap.used}}</td>
-          </tr>
-          <tr>
-            <td>Free:</td>
-            <td class="numeric">{{processMemory swap.free}}</td>
-          </tr>
-          <tr>
-            <td>Swapped In:</td>
-            <td class="numeric">{{processMemory swap.sin}}</td>
-          </tr>
-          <tr>
-            <td>Swapped Out:</td>
-            <td class="numeric">{{processMemory swap.sout}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-{{/with}}
+</div>

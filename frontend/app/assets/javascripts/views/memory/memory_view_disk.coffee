@@ -1,25 +1,28 @@
 class Psio.MemoryViewDisk extends Psio.BaseView
-  template:  'memory-disk'
+  template:  'memory'
   className: 'row memory'
   
   init: ->
-    @memInfoView  = new Psio.MemInfoView(model: @model, template: 'memory-info-disk')
+    @disksInfoView = new Psio.MemInfoView(collection: @collection, template: 'memory-info-disk')
     #@memChartView = new Psio.VirtualMemChart(model: @model)
     
-    @model.on 'change', @renderSubViews, @
+    #@model.on 'change', @renderChart, @
+    @collection.on 'reset', @renderInfo, @
   
   render: ->
     @renderTemplate()
     @
   
-  renderSubViews: ->
-    @memInfoView.render()
+  renderChart: ->
     #@memChartView.render()
     
+    # chartSection = @$el.find('#mem-chart')
+    # chartSection.html(@memChartView.el)
+    @
+  
+  renderInfo: ->
+    @disksInfoView.render()
     infoSection = @$el.find('#mem-info')
-    infoSection.html(@memInfoView.el)
-    
-    chartSection = @$el.find('#mem-chart')
-    chartSection.html(@memChartView.el)
+    infoSection.html(@disksInfoView.el)
     @
     
