@@ -52,3 +52,7 @@ class ProcessMonitor:
     for disk in psutil.disk_partitions():
       disks.append(disk._asdict())
     return disks
+  
+  def network_stats(self):
+    stats = psutil.network_io_counters()
+    return dict(bytes_sent=stats.bytes_sent, bytes_received=stats.bytes_recv)
