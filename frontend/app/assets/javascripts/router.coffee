@@ -153,7 +153,10 @@ class Psio.Router extends Backbone.Router
     
     network = new Psio.NetworkInterface()
     
+    nav = new Psio.NetworkNavView()
+    
     Psio.content.html('')
+    Psio.content.append(nav.el)
     
     ws = new WebSocket('ws://localhost:8888')
     
