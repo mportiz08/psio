@@ -161,7 +161,7 @@ class Psio.Router extends Backbone.Router
       resp  = JSON.parse(event.data)
       stats = resp.data
       network.set(stats)
-      network.updateMetrics()
+      #network.updateMetrics()
     
     ws.onopen = (event) ->
       psm = new Psio.ProcessMonitor(ws, Psio.GetNetworkStatsCommand)

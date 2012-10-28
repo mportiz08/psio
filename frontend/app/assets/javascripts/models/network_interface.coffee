@@ -4,14 +4,23 @@ class Psio.NetworkInterface extends Backbone.Model
   
   initialize: ->
     @metrics = new Psio.Store("networkinterface-#{@get('name')}.io", [])
+    @on 'change', @updateMetrics, @
   
   updateMetrics: ->
     @updateIO() if @has('bytes_sent') and @has('bytes_received')
   
   updateIO: ->
-    console.log 'updating'
     @metrics.push @currentIO()
   
   currentIO: ->
-    bytes_sent:     @get('bytes_sent')
-    bytes_received: @get('bytes_received')
+    data =
+      bytes_sent:     @get('bytes_sent')
+      bytes_received: @get('bytes_received')
+    
+    if @hasChanged('bytes_sent') and @previous('bytes_sent')?
+      data.bytes_sent_diff = @get('bytes_sent') - @previous('bytes_sent')
+    
+    if @hasChanged('bytes_received') and @previous('bytes_received')?
+      data.bytes_received_diff = @get('bytes_received') - @previous('bytes_received')
+    
+    data
