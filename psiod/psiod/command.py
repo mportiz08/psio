@@ -23,6 +23,10 @@ class GetAllDisks(MonitorCommand):
   def execute(self):
     return self.monitor.all_disks()
 
+class GetRootDiskStats(MonitorCommand):
+  def execute(self):
+    return self.monitor.root_disk_stats()
+
 class GetNetworkStats(MonitorCommand):
   def execute(self):
     return self.monitor.network_stats()

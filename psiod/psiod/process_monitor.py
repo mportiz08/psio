@@ -53,6 +53,10 @@ class ProcessMonitor:
       disks.append(disk._asdict())
     return disks
   
+  def root_disk_stats(self):
+    usage = psutil.disk_usage('/')
+    return usage._asdict()
+  
   def network_stats(self):
     stats = psutil.network_io_counters()
     return dict(bytes_sent=stats.bytes_sent, bytes_received=stats.bytes_recv)
