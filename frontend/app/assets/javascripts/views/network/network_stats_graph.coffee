@@ -1,12 +1,14 @@
-class Psio.GraphCollectionView extends Psio.BaseView
+class Psio.NetworkStatsGraph extends Psio.BaseView
   className: 'row'
-  
+  template:  'network-stats-graph'
+  yBuffer:   50
+
   render: ->
     @renderTemplate()
     @
   
   renderGraph: ->
-    return if @collection.isEmpty()
+    return unless @model?
     
     if not @graph?
       @createGraph()
@@ -19,11 +21,6 @@ class Psio.GraphCollectionView extends Psio.BaseView
   createGraph: ->
     graphEl = @$el.find(@options.graphEl).get(0)
     palette = new Rickshaw.Color.Palette()
-    
-    series = @collection.map (item) ->
-      name:  item.toString()
-      color: palette.color()
-      data:  item.graphPlots()
       
     @graph = new Rickshaw.Graph
       element:  graphEl
@@ -33,7 +30,18 @@ class Psio.GraphCollectionView extends Psio.BaseView
       min:      -1  # real min is 0, using -1 for display purposes
       max:      103 # real max is 100, using 103 for display purposes
       interpolation: 'linear'
-      series:   series
+      series:   [
+        {
+          name:  'upload speed (bytes per second)'
+          color: palette.color()
+          data:  [{x: 0, y: 0}]
+        },
+        {
+          name:  'download speed (bytes per second)'
+          color: palette.color()
+          data:  [{x: 0, y: 0}]
+        }
+      ]
     
     @legend = new Rickshaw.Graph.Legend
       graph: @graph,
@@ -45,6 +53,13 @@ class Psio.GraphCollectionView extends Psio.BaseView
       graph: @graph
   
   updateGraph: ->
-    @collection.each (item, i) =>
-      d = item.graphPlots()
-      @graph.series[i].data = d
+    plots = @model.graphPlots()
+    
+    getVals = (plot) ->
+      plot.y
+    
+    # update the maximum value for the graph based on new data
+    @graph.max = _.max(_.map(_.flatten(plots), getVals)) + @options.yBuffer
+    
+    @graph.series[0].data = plots[0]
+    @graph.series[1].data = plots[1]

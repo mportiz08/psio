@@ -24,3 +24,15 @@ class Psio.NetworkInterface extends Backbone.Model
       data.bytes_received_diff = @get('bytes_received') - @previous('bytes_received')
     
     data
+  
+  graphPlots: ->
+    plots = [{ x: 0, y: 0 }, { x: 0, y: 0 }]
+    
+    metrics = _.filter @metrics.get(), (metric) ->
+      metric.bytes_sent_diff? and metric.bytes_received_diff?
+    
+    if metrics.length > 0
+      plots[0] = ({ x: i, y: metric.bytes_sent_diff } for metric, i in metrics)
+      plots[1] = ({ x: i, y: metric.bytes_received_diff } for metric, i in metrics)
+    
+    plots

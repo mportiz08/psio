@@ -155,8 +155,17 @@ class Psio.Router extends Backbone.Router
     
     nav = new Psio.NetworkNavView()
     
+    graphOpts =
+      model: network
+      graphEl:    '#network-stats-graph'
+      template:   'network-stats-graph'
+    graph = new Psio.NetworkStatsGraph(graphOpts)
+    
     Psio.content.html('')
     Psio.content.append(nav.el)
+    Psio.content.append(graph.el)
+    
+    network.on 'change', graph.renderGraph, graph
     
     ws = new WebSocket('ws://localhost:8888')
     
