@@ -156,3 +156,24 @@ Here's the types of commands that can be used right now:
         ...etc
       ]
     }
+
+### Listing network stats
+
+**request**
+
+    {
+      type: "command",
+      data: {
+        name: "network.getstats"
+      }
+    }
+
+**response**
+
+    {
+      type: "response",
+      data: {
+        bytes_received: 9484170241,
+        bytes:sent: 189175826
+      }
+    }

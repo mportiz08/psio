@@ -22,3 +22,7 @@ class GetAllMemory(MonitorCommand):
 class GetAllDisks(MonitorCommand):
   def execute(self):
     return self.monitor.all_disks()
+
+class GetNetworkStats(MonitorCommand):
+  def execute(self):
+    return self.monitor.network_stats()

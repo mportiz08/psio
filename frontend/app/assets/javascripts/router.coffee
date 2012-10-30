@@ -121,10 +121,6 @@ class Psio.Router extends Backbone.Router
     ws.onopen = ->
       psm = new Psio.ProcessMonitor(ws, Psio.GetAllMemoryCommand)
       psm.start(5000)
-    
-  network: ->
-    console.debug 'network route'
-    Psio.setNetworkMode()
   
   memoryDisk: ->
     console.debug 'memory/disk route'
@@ -150,3 +146,35 @@ class Psio.Router extends Backbone.Router
     ws.onopen = (event) ->
       psm = new Psio.ProcessMonitor(ws, Psio.GetAllDisksCommand)
       psm.start(0)
+  
+  network: ->
+    console.debug 'network route'
+    Psio.setNetworkMode()
+    
+    network = new Psio.NetworkInterface()
+    
+    nav = new Psio.NetworkNavView()
+    
+    graphOpts =
+      model: network
+      graphEl:    '#network-stats-graph'
+      template:   'network-stats-graph'
+    graph = new Psio.NetworkStatsGraph(graphOpts)
+    
+    Psio.content.html('')
+    Psio.content.append(nav.el)
+    Psio.content.append(graph.el)
+    
+    network.on 'change', graph.renderGraph, graph
+    
+    ws = new WebSocket('ws://localhost:8888')
+    
+    ws.onmessage = (event) ->
+      resp  = JSON.parse(event.data)
+      stats = resp.data
+      network.set(stats)
+      #network.updateMetrics()
+    
+    ws.onopen = (event) ->
+      psm = new Psio.ProcessMonitor(ws, Psio.GetNetworkStatsCommand)
+      psm.start(1000)
