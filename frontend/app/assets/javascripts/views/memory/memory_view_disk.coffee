@@ -4,9 +4,9 @@ class Psio.MemoryViewDisk extends Psio.BaseView
   
   init: ->
     @disksInfoView = new Psio.MemInfoView(collection: @collection, template: 'memory-info-disk')
-    #@memChartView = new Psio.VirtualMemChart(model: @model)
+    @memChartView = new Psio.DiskSpaceChart(model: @model)
     
-    #@model.on 'change', @renderChart, @
+    @model.on 'change', @renderChart, @
     @collection.on 'reset', @renderInfo, @
   
   render: ->
@@ -14,10 +14,9 @@ class Psio.MemoryViewDisk extends Psio.BaseView
     @
   
   renderChart: ->
-    #@memChartView.render()
-    
-    # chartSection = @$el.find('#mem-chart')
-    # chartSection.html(@memChartView.el)
+    @memChartView.render()
+    chartSection = @$el.find('#mem-chart')
+    chartSection.html(@memChartView.el)
     @
   
   renderInfo: ->
