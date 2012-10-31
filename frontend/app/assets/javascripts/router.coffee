@@ -67,6 +67,8 @@ class Psio.Router extends Backbone.Router
         cpuList.each (cpu, i) ->
           cpu.set(cpus[i])
           cpu.updateMetrics()
+        cpusView.render()
+        cpusView.updateProgressBars(cpuList)
         graphs.renderGraph()
     
     ws.onopen = ->
