@@ -32,3 +32,10 @@ body {
 #content h2 {
   font-weight: lighter;
 }
+
+#hostinfo {
+  color: #777;
+  position: fixed;
+  bottom: 5px;
+  left: 5px;
+}
