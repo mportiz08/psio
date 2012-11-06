@@ -24,7 +24,7 @@ class Psio.Router extends Backbone.Router
     Psio.content.append(schedView.el)
     Psio.content.append(procsView.el)
     
-    ws = new WebSocket("ws://localhost:8888")
+    ws = new WebSocket("ws://#{Psio.settings.host}:8888")
     
     ws.onmessage = (event) ->
       resp  = JSON.parse(event.data)
@@ -55,7 +55,7 @@ class Psio.Router extends Backbone.Router
     Psio.content.append(cpusView.el)
     Psio.content.append(graphs.el)
     
-    ws = new WebSocket('ws://localhost:8888')
+    ws = new WebSocket("ws://#{Psio.settings.host}:8888")
     
     ws.onmessage = (event) ->
       resp = JSON.parse(event.data)
@@ -88,7 +88,7 @@ class Psio.Router extends Backbone.Router
     Psio.content.append(cpuView.el)
     Psio.content.append(cpuGraph.el)
     
-    ws = new WebSocket('ws://localhost:8888')
+    ws = new WebSocket("ws://#{Psio.settings.host}:8888")
     
     ws.onmessage = (event) ->
       resp = JSON.parse(event.data)
@@ -113,7 +113,7 @@ class Psio.Router extends Backbone.Router
     Psio.content.append(memNav.el)
     Psio.content.append(memView.el)
     
-    ws = new WebSocket('ws://localhost:8888')
+    ws = new WebSocket("ws://#{Psio.settings.host}:8888")
     
     ws.onmessage = (event) ->
       resp = JSON.parse(event.data)
@@ -138,8 +138,8 @@ class Psio.Router extends Backbone.Router
     Psio.content.append(memNav.el)
     Psio.content.append(memView.el)
     
-    disksWs = new WebSocket('ws://localhost:8888')
-    spaceWs = new WebSocket('ws://localhost:8888')
+    disksWs = new WebSocket("ws://#{Psio.settings.host}:8888")
+    spaceWs = new WebSocket("ws://#{Psio.settings.host}:8888")
     
     disksWs.onmessage = (event) ->
       resp      = JSON.parse(event.data)
@@ -179,7 +179,7 @@ class Psio.Router extends Backbone.Router
     
     network.on 'change', graph.renderGraph, graph
     
-    ws = new WebSocket('ws://localhost:8888')
+    ws = new WebSocket("ws://#{Psio.settings.host}:8888")
     
     ws.onmessage = (event) ->
       resp  = JSON.parse(event.data)

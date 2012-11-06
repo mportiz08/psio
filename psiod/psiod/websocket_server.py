@@ -4,11 +4,12 @@ import logging
 from tornado import websocket
 
 COMMANDS = {
+  'host.getstats':       command.GetHostInfo,
   'process.getall':      command.GetAllProcesses,
   'cpu.getall':          command.GetAllCPUs,
   'memory.getall':       command.GetAllMemory,
   'disk.getall':         command.GetAllDisks,
-  'disk.root.getstats': command.GetRootDiskStats,
+  'disk.root.getstats':  command.GetRootDiskStats,
   'network.getstats':    command.GetNetworkStats
 }
 
