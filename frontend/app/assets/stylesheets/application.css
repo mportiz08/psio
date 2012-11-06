@@ -13,6 +13,10 @@ body {
   background-image: url("/images/glyphicons-halflings.png");
 }
 
+.hidden {
+  display: none;
+}
+
 #bg-icon {
   left: 50%;
   margin-left: -300px;
