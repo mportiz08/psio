@@ -9,7 +9,7 @@ class Psio.Host extends Backbone.Model
       'unknown'
   
   fetchHostInfo: ->
-    ws = new WebSocket("ws://localhost:8888")
+    ws = new WebSocket("ws://#{Psio.settings.host}:8888")
     
     ws.onmessage = (event) =>
       resp = JSON.parse(event.data)
