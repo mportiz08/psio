@@ -1,10 +1,16 @@
 import os
+import socket
+
 import psutil
 
 class ProcessMonitor:
   def __init__(self, limited_by_user=True):
     self.user = os.environ['USER']
+    self.host = socket.gethostname()
     self.limited_by_user = limited_by_user
+  
+  def host_info(self):
+    return dict(hostname=self.host)
   
   def all_processes(self):
     procs = []

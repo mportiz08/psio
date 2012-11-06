@@ -7,6 +7,10 @@ class MonitorCommand:
   def execute(self):
     raise Exception('Should be implemented in a subclass.')
 
+class GetHostInfo(MonitorCommand):
+  def execute(self):
+    return self.monitor.host_info()
+
 class GetAllProcesses(MonitorCommand):
   def execute(self):
     return self.monitor.all_processes()

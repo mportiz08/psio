@@ -2,8 +2,10 @@ class Psio.HostInfoView extends Backbone.View
   id: 'hostinfo'
   
   initialize: ->
+    @model.on 'change', @render, @
     @render()
   
   render: ->
-    @$el.html('host: marcus.local') # temp
+    html = "host: <strong>#{@model.hostname()}</strong>"
+    @$el.html(html)
     @
