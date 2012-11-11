@@ -10,6 +10,9 @@ end
 desc 'Builds the psiod python module and its dependencies.'
 task :build do
   sh 'sudo pip install --upgrade ./psiod'
+  cd 'frontend' do
+    sh 'bundle install'
+  end
 end
 
 desc 'Starts the frontend server.'
