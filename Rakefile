@@ -1,6 +1,6 @@
 require 'rake'
 
-task :default => [:build]
+task :default => ['build:psiod']
 
 desc 'Builds the psiod python module.'
 task 'build:psiod' do

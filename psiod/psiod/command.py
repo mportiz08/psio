@@ -1,7 +1,7 @@
 from process_monitor import ProcessMonitor
 
 class MonitorCommand:
-  def __init__(self):
+  def __init__(self, args):
     self.monitor = ProcessMonitor()
   
   def execute(self):
@@ -14,6 +14,14 @@ class GetHostInfo(MonitorCommand):
 class GetAllProcesses(MonitorCommand):
   def execute(self):
     return self.monitor.all_processes()
+
+class GetProcess(MonitorCommand):
+  def __init__(self, args):
+    super(GetProcess, self).__init__(args)
+    self.pid = args['pid']
+  
+  def execute(self):
+    return self.monitor.process(self.pid)
 
 class GetAllCPUs(MonitorCommand):
   def execute(self):

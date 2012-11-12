@@ -42,6 +42,10 @@ class ProcessMonitor:
     
     return procs
   
+  def process(self, pid):
+    procs = []
+    return dict(pid=pid, processes=procs)
+  
   def all_cpus(self):
     cpus = []
     for cpu_num, percent in enumerate(psutil.cpu_percent(interval=0, percpu=True)):
