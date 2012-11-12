@@ -1,6 +1,6 @@
 from process_monitor import ProcessMonitor
 
-class MonitorCommand:
+class MonitorCommand(object):
   def __init__(self, args):
     self.monitor = ProcessMonitor()
   
