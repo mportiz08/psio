@@ -120,6 +120,7 @@ class Psio.Router extends Backbone.Router
       process.set(proc)
     
     ws.onopen = ->
+      procView.options.ws = ws
       psm = new Psio.ProcessMonitor(ws, Psio.GetProcessCommand(pid))
       psm.start()
   
