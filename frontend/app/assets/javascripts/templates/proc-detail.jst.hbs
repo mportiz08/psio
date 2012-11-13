@@ -1,8 +1,33 @@
 {{#with process}}
-  <div class="span12">
-    <h1>
-      {{name}}
-      <small>PID {{pid}}</small>
-    </h1>
+  <div class="span12 proc-detail">
+    <div class="row">
+      <div class="span12">
+        <h1>
+          {{name}}
+          <small>
+            pid {{pid}}
+          </small>
+        </h1>
+        <p class="lead">
+          {{status}}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12"><h4>CPU</h4></div>
+    </div>
+    <div class="row">
+      <div class="span12 metric">
+        {{processCPU cpu_percent}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12"><h4>Memory</h4></div>
+    </div>
+    <div class="row">
+      <div class="span12 metric">
+        {{processMemory memory_info.0.}}
+      </div>
+    </div>
   </div>
 {{/with}}

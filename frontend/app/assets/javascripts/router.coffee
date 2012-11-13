@@ -117,7 +117,6 @@ class Psio.Router extends Backbone.Router
     ws.onmessage = (event) ->
       resp = JSON.parse(event.data)
       proc = resp.data
-      console.log proc
       process.set(proc)
     
     ws.onopen = ->

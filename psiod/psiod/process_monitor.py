@@ -44,11 +44,16 @@ class ProcessMonitor:
     return procs
   
   def process(self, pid):
-    proc = psutil.Process(int(pid)).as_dict(self.process_attrs)
-    # json.dump can't encode constants
-    proc['status'] = str(proc['status'])
+    proc = psutil.Process(int(pid))#.as_dict(self.process_attrs)
+    ret  = proc.as_dict(self.process_attrs)
     
-    return proc
+    # json.dump can't encode constants
+    ret['status'] = str(ret['status'])
+    
+    # no idea why this isn't working automatically...
+    ret['cpu_percent'] = proc.get_cpu_percent()
+    
+    return ret
   
   def all_cpus(self):
     cpus = []
