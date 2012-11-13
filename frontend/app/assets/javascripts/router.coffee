@@ -105,7 +105,9 @@ class Psio.Router extends Backbone.Router
     console.debug 'process/:pid route'
     Psio.setSchedulingMode()
     
-    procView = new Psio.ProcessDetailView()
+    process = new Psio.Process()
+    
+    procView = new Psio.ProcessDetailView(model: process)
     
     Psio.content.html('')
     Psio.content.append(procView.el)
@@ -113,9 +115,10 @@ class Psio.Router extends Backbone.Router
     ws = new WebSocket("ws://#{Psio.settings.host}:8888")
     
     ws.onmessage = (event) ->
-      resp  = JSON.parse(event.data)
-      procs = resp.data
-      console.log procs
+      resp = JSON.parse(event.data)
+      proc = resp.data
+      console.log proc
+      process.set(proc)
     
     ws.onopen = ->
       psm = new Psio.ProcessMonitor(ws, Psio.GetProcessCommand(pid))

@@ -8,6 +8,18 @@ class ProcessMonitor:
     self.user = os.environ['USER']
     self.host = socket.gethostname()
     self.limited_by_user = limited_by_user
+    self.process_attrs = [
+      'pid',
+      'username',
+      'get_nice',
+      'get_memory_info',
+      'get_memory_percent',
+      'get_cpu_percent',
+      'get_cpu_times',
+      'get_num_threads',
+      'name',
+      'status'
+    ]
   
   def host_info(self):
     return dict(hostname=self.host)
@@ -16,18 +28,7 @@ class ProcessMonitor:
     procs = []
     for p in psutil.process_iter():
       try:
-        p.dict = p.as_dict([
-          'pid',
-          'username',
-          'get_nice',
-          'get_memory_info',
-          'get_memory_percent',
-          'get_cpu_percent',
-          'get_cpu_times',
-          'get_num_threads',
-          'name',
-          'status'
-        ])
+        p.dict = p.as_dict(self.process_attrs)
       except psutil.NoSuchProcess:
         pass
       else:
@@ -43,8 +44,11 @@ class ProcessMonitor:
     return procs
   
   def process(self, pid):
-    procs = []
-    return dict(pid=pid, processes=procs)
+    proc = psutil.Process(int(pid)).as_dict(self.process_attrs)
+    # json.dump can't encode constants
+    proc['status'] = str(proc['status'])
+    
+    return proc
   
   def all_cpus(self):
     cpus = []
