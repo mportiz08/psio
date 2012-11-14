@@ -1,9 +1,8 @@
 #!/bin/sh
+set -e
+
 # start psiod
 psiod &
-
-# kill psiod if shell exits unexpectedly
-# trap 'kill $(jobs -p)' EXIT
 
 # start frontend server
 cd $(dirname $0)/../frontend
