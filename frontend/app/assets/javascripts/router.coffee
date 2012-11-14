@@ -12,11 +12,15 @@ class Psio.Router extends Backbone.Router
   index: ->
     @navigate 'scheduling', trigger: true, replace: true
   
-  scheduling: ->
-    console.debug 'scheduling route'
+  scheduling: (params) ->
+    console.debug 'scheduling route', params
     Psio.setSchedulingMode()
     
     procList = new Psio.ProcessList()
+    
+    if params? and params.sort?
+      procList.comparator = (proc) ->
+        proc.get(params.sort)
     
     schedView = new Psio.SchedulingNavView()
     procsView = new Psio.ProcessListView(collection: procList)

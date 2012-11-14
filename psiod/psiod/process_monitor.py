@@ -35,6 +35,11 @@ class ProcessMonitor:
         # json.dump can't encode constants
         p.dict['status'] = str(p.dict['status'])
         
+        # for convenience
+        if p.dict['memory_info'] is not None:
+          p.dict['memory_rss'] = p.dict['memory_info'][0]
+          p.dict['memory_vms'] = p.dict['memory_info'][1]
+        
         if self.limited_by_user:
           if self.user == p.dict['username']:
             procs.append(p.dict)
