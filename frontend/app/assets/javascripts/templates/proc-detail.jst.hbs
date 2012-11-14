@@ -1,0 +1,42 @@
+{{#with process}}
+  <div class="span12 proc-detail">
+    <div class="row">
+      <div class="span10">
+        <h1>{{name}}</h1>
+      </div>
+      <div class="span2 status">
+        <h1><small>{{status}}</small></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <p class="lead">
+          pid <strong>{{pid}}</strong>
+          user <strong>{{username}}</strong>
+        </p>
+      </div>
+      <div class="span6 controls">
+        <button id="kill-btn" class="btn btn-large btn-danger pull-right" type="button">Kill Process</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12"><h4>CPU</h4></div>
+    </div>
+    <div class="row">
+      <div class="span6 metric">
+        {{processCPU cpu_percent}}
+      </div>
+      <div class="span6 metric">
+        {{processThreads num_threads}} threads
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12"><h4>Memory</h4></div>
+    </div>
+    <div class="row">
+      <div class="span12 metric">
+        {{processMemory memory_info.0.}}
+      </div>
+    </div>
+  </div>
+{{/with}}

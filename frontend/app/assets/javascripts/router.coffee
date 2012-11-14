@@ -4,6 +4,7 @@ class Psio.Router extends Backbone.Router
     'scheduling':          'scheduling'
     'scheduling/cpu':      'cpuList'
     'scheduling/cpu/:num': 'cpuDetail'
+    'process/:pid':        'processDetail'
     'memory':              'memory'
     'memory/disk':         'memoryDisk'
     'network':             'network'
@@ -11,11 +12,15 @@ class Psio.Router extends Backbone.Router
   index: ->
     @navigate 'scheduling', trigger: true, replace: true
   
-  scheduling: ->
-    console.debug 'scheduling route'
+  scheduling: (params) ->
+    console.debug 'scheduling route', params
     Psio.setSchedulingMode()
     
     procList = new Psio.ProcessList()
+    
+    if params? and params.sort?
+      procList.comparator = (proc) ->
+        proc.get(params.sort)
     
     schedView = new Psio.SchedulingNavView()
     procsView = new Psio.ProcessListView(collection: procList)
@@ -98,6 +103,29 @@ class Psio.Router extends Backbone.Router
     
     ws.onopen = ->
       psm = new Psio.ProcessMonitor(ws, Psio.GetAllCPUsCommand)
+      psm.start()
+  
+  processDetail: (pid) ->
+    console.debug 'process/:pid route'
+    Psio.setSchedulingMode()
+    
+    process = new Psio.Process()
+    
+    procView = new Psio.ProcessDetailView(model: process)
+    
+    Psio.content.html('')
+    Psio.content.append(procView.el)
+    
+    ws = new WebSocket("ws://#{Psio.settings.host}:8888")
+    
+    ws.onmessage = (event) ->
+      resp = JSON.parse(event.data)
+      proc = resp.data
+      process.set(proc)
+    
+    ws.onopen = ->
+      procView.options.ws = ws
+      psm = new Psio.ProcessMonitor(ws, Psio.GetProcessCommand(pid))
       psm.start()
   
   memory: ->

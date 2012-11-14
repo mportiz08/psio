@@ -1,6 +1,7 @@
 #= require      ./vendor/jquery-1.8.1.min.js
 #= require      ./vendor/underscore-min.js
 #= require      ./vendor/backbone-min.js
+#= require      ./vendor/backbone.queryparams.js
 #= require      ./vendor/bootstrap.min.js
 #= require      ./vendor/d3-v2.min.js
 #= require      ./vendor/rickshaw-1.1.2.min.js

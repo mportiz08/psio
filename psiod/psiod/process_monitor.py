@@ -8,6 +8,18 @@ class ProcessMonitor:
     self.user = os.environ['USER']
     self.host = socket.gethostname()
     self.limited_by_user = limited_by_user
+    self.process_attrs = [
+      'pid',
+      'username',
+      'get_nice',
+      'get_memory_info',
+      'get_memory_percent',
+      'get_cpu_percent',
+      'get_cpu_times',
+      'get_num_threads',
+      'name',
+      'status'
+    ]
   
   def host_info(self):
     return dict(hostname=self.host)
@@ -16,23 +28,17 @@ class ProcessMonitor:
     procs = []
     for p in psutil.process_iter():
       try:
-        p.dict = p.as_dict([
-          'pid',
-          'username',
-          'get_nice',
-          'get_memory_info',
-          'get_memory_percent',
-          'get_cpu_percent',
-          'get_cpu_times',
-          'get_num_threads',
-          'name',
-          'status'
-        ])
+        p.dict = p.as_dict(self.process_attrs)
       except psutil.NoSuchProcess:
         pass
       else:
         # json.dump can't encode constants
         p.dict['status'] = str(p.dict['status'])
+        
+        # for convenience
+        if p.dict['memory_info'] is not None:
+          p.dict['memory_rss'] = p.dict['memory_info'][0]
+          p.dict['memory_vms'] = p.dict['memory_info'][1]
         
         if self.limited_by_user:
           if self.user == p.dict['username']:
@@ -41,6 +47,22 @@ class ProcessMonitor:
           procs.append(p.dict)
     
     return procs
+  
+  def process(self, pid):
+    proc = psutil.Process(int(pid))
+    ret  = proc.as_dict(self.process_attrs)
+    
+    # json.dump can't encode constants
+    ret['status'] = str(ret['status'])
+    
+    # no idea why this isn't working automatically...
+    ret['cpu_percent'] = proc.get_cpu_percent()
+    
+    return ret
+  
+  def kill_process(self, pid):
+    proc = psutil.Process(int(pid))
+    proc.kill()
   
   def all_cpus(self):
     cpus = []

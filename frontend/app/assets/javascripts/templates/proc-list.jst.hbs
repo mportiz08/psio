@@ -1,21 +1,21 @@
 <div class="span12">
   <table class="proc-list table table-condensed table-bordered">
     <thead>
-      <th>PID</th>
-      <th>Name</th>
-      <th>User</th>
-      <th>Threads</th>
-      <th>% CPU</th>
-      <th>Memory</th>
+      <th><a href="/scheduling?sort=pid">PID</a></th>
+      <th><a href="/scheduling?sort=name">Name</a></th>
+      <th><a href="/scheduling?sort=username">User</a></th>
+      <th><a href="/scheduling?sort=num_threads">Threads</a></th>
+      <th><a href="/scheduling?sort=cpu_percent">% CPU</a></th>
+      <th><a href="/scheduling?sort=memory_rss">Memory (RSS)</a></th>
     </thead>
     <tbody>
       {{#each processes}}
         <tr>
           <td class="numeric">
-            {{pid}}
+            {{linkToProcess pid}}
           </td>
           <td>
-            {{linkToProcess name}}
+            {{linkToApp name}}
           </td>
           <td>
             {{username}}
@@ -27,7 +27,7 @@
             {{processCPU cpu_percent}}
           </td>
           <td class="numeric">
-            {{processMemory memory_info.0.}}
+            {{processMemory memory_rss}}
           </td>
         </tr>
       {{/each}}

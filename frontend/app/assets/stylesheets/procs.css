@@ -1,3 +1,15 @@
 .proc-list {
   background: rgba(255, 255, 255, 0.5);
 }
+
+.proc-detail .status {
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.proc-detail .metric {
+  font-size: 96px;
+  font-weight: 200;
+  line-height: 100%;
+  padding: 15px 0;
+}
