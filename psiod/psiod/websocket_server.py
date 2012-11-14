@@ -7,6 +7,7 @@ COMMANDS = {
   'host.getstats':       command.GetHostInfo,
   'process.getall':      command.GetAllProcesses,
   'process.get':         command.GetProcess,
+  'process.kill':        command.KillProcess,
   'cpu.getall':          command.GetAllCPUs,
   'memory.getall':       command.GetAllMemory,
   'disk.getall':         command.GetAllDisks,
@@ -34,5 +35,6 @@ class WebSocketServer(websocket.WebSocketHandler):
     cmd  = COMMANDS[cmd_name](cmd_args)
     data = cmd.execute()
     
-    resp = dict(type='response', data=data)
-    self.write_message(json.dumps(resp))
+    if data is not None:
+      resp = dict(type='response', data=data)
+      self.write_message(json.dumps(resp))

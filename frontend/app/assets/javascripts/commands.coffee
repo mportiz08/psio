@@ -19,3 +19,6 @@ Psio.GetNetworkStatsCommand  = Psio.Command.create('network.getstats')
 
 Psio.GetProcessCommand = (pid) ->
   (new Psio.Command('process.get', { pid: pid })).create()
+
+Psio.KillProcessCommand = (pid) ->
+  (new Psio.Command('process.kill', { pid: pid })).create()

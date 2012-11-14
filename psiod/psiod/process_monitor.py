@@ -44,7 +44,7 @@ class ProcessMonitor:
     return procs
   
   def process(self, pid):
-    proc = psutil.Process(int(pid))#.as_dict(self.process_attrs)
+    proc = psutil.Process(int(pid))
     ret  = proc.as_dict(self.process_attrs)
     
     # json.dump can't encode constants
@@ -54,6 +54,10 @@ class ProcessMonitor:
     ret['cpu_percent'] = proc.get_cpu_percent()
     
     return ret
+  
+  def kill_process(self, pid):
+    proc = psutil.Process(int(pid))
+    proc.kill()
   
   def all_cpus(self):
     cpus = []

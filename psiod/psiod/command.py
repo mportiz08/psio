@@ -23,6 +23,10 @@ class GetProcess(MonitorCommand):
   def execute(self):
     return self.monitor.process(self.pid)
 
+class KillProcess(GetProcess):
+  def execute(self):
+    self.monitor.kill_process(self.pid)
+
 class GetAllCPUs(MonitorCommand):
   def execute(self):
     return self.monitor.all_cpus()
