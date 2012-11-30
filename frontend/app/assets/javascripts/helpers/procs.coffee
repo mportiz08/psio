@@ -19,7 +19,7 @@ linkToProcess = (pid) ->
   new Handlebars.SafeString("<a href=\"#{href}\">#{pid}</a>")
 
 linkToApp = (name) ->
-  href = "/application/#{Psio.slug(name)}"
+  href = "/application?name=#{Psio.urlEncode(name)}"
   new Handlebars.SafeString("<a href=\"#{href}\">#{name}</a>")
 
 Handlebars.registerHelper 'processThreads', processThreads
