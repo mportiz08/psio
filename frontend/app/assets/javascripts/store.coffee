@@ -17,6 +17,7 @@ class Psio.Store
   
   push: (val) ->
     arr = @get()
+    arr = [] unless arr?
     arr.push(val)
     @set(arr)
   
