@@ -5,20 +5,27 @@
     </div>
   </div>
   <div class="row">
-    <div class="span12">
-      <h2>Info</h2>
+    <div class="span4">
+      <h3>Processes</h3>
+    </div>
+    <div class="span4">
+      <h3>CPU</h3>
+    </div>
+    <div class="span4">
+      <h3>Memory</h3>
     </div>
   </div>
   <div class="row">
     <div class="span4">
-      <table class="table table-condensed table-bordered">
-        <tbody>
-          <tr>
-            <td>PID(s):</td>
-            <td>{{pids}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <p>
+        {{pids}}
+      </p>
+    </div>
+    <div class="span4">
+      <h2>{{processCPU totalCPU}}</h2>
+    </div>
+    <div class="span4">
+      <h2>{{processMemory totalMemory}}</h2>
     </div>
   </div>
 </div>

@@ -11,5 +11,7 @@ class Psio.AppDetailView extends Psio.BaseView
     @renderTemplate
       application: @options.application
       pids:        new Handlebars.SafeString(pids.join(', '))
+      totalCPU:    @collection.totalCPUUsage()
+      totalMemory: @collection.totalMemoryUsage()
       processes:   @collection.toJSON()
     @
