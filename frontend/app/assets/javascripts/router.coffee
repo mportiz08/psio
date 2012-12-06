@@ -135,20 +135,16 @@ class Psio.Router extends Backbone.Router
     
     appName = Psio.urlDecode(params.name)
     
-    procList = new Psio.ProcessList()
+    procList = new Psio.ProcessList([], appName: appName)
     procList.comparator = (proc) ->
         proc.get('pid')
     
-    appView = new Psio.AppDetailView(collection: procList, application: appName)
-    graphOpts =
-      collection: procList
-      graphEl:    '#proc-list-graph'
-      template:   'proc-list-graph'
-    graphs    = new Psio.GraphCollectionView(graphOpts)
+    appView  = new Psio.AppDetailView(collection: procList, application: appName)
+    cpuGraph = new Psio.CPUGraphView(collection: procList)
     
     Psio.content.html('')
     Psio.content.append(appView.el)
-    Psio.content.append(graphs.el)
+    Psio.content.append(cpuGraph.el)
     
     ws = new WebSocket("ws://#{Psio.settings.host}:8888")
     
@@ -159,14 +155,9 @@ class Psio.Router extends Backbone.Router
       filteredProcs = _.filter procs, (p) ->
         p.name is appName
       
-      if procList.isEmpty()
-        procList.reset(filteredProcs)
-      else
-        procList.reset(filteredProcs)
-        procList.each (proc, i) ->
-          proc.set(filteredProcs[i])
-          proc.updateMetrics()
-        graphs.renderGraph()
+      procList.reset(filteredProcs)
+      procList.updateMetrics()
+      cpuGraph.renderGraph()
     
     ws.onopen = ->
       psm = new Psio.ProcessMonitor(ws)

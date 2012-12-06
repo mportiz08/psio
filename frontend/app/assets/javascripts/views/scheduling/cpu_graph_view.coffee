@@ -3,7 +3,8 @@ class Psio.CPUGraphView extends Psio.BaseView
   className: 'row'
   
   init: ->
-    @model.on 'change', @renderGraph, @
+    @model.on 'change', @renderGraph, @ if @model?
+    #@collection.on 'reset', @renderGraph, @ if @collection?
   
   render: ->
     @renderTemplate()
@@ -42,4 +43,5 @@ class Psio.CPUGraphView extends Psio.BaseView
       graph: @graph
   
   updateGraph: ->
-    @graph.series[0].data = @model.graphPlots()
+    @graph.series[0].data = @model.graphPlots() if @model?
+    @graph.series[0].data = @collection.graphPlots() if @collection?
