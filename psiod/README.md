@@ -6,11 +6,11 @@ It's automatically started with the `psio` command and can be run separately fro
 
 ## API
 
-To use psiod from a websocket client, connect to the websocket server at `ws://localhost:3000`.
+To use psiod from a websocket client, connect to the websocket server at `ws://<host>:8888`.
 
 For example, in javascript:
 
-    var ws = new WebSocket('ws://localhost:3000');
+    var ws = new WebSocket('ws://localhost:8888');
 
 This can be used to send commands to psiod and get information back from it.
 

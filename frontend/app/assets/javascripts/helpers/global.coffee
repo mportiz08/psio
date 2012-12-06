@@ -6,6 +6,12 @@ Psio.slug = (resource) ->
           .replace(/^-+/, '')       # Trim - from start of text
           .replace(/-+$/, '')       # Trim - from end of text
 
+Psio.urlEncode = (resource) ->
+  encodeURIComponent(resource)
+
+Psio.urlDecode = (resource) ->
+  decodeURIComponent(resource)
+
 progressBar = (percent) ->
   html = """
   <div class="progress progress-info progress-striped active">

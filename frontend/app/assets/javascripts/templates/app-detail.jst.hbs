@@ -1,0 +1,31 @@
+<div class="app-detail container">
+  <div class="row">
+    <div class="span12">
+      <h1>{{application}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <h3>Processes</h3>
+    </div>
+    <div class="span4">
+      <h3>CPU</h3>
+    </div>
+    <div class="span4">
+      <h3>Memory</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <p>
+        {{pids}}
+      </p>
+    </div>
+    <div class="span4">
+      <h2>{{processCPU totalCPU}}</h2>
+    </div>
+    <div class="span4">
+      <h2>{{processMemory totalMemory}}</h2>
+    </div>
+  </div>
+</div>

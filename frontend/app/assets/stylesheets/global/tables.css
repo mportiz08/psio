@@ -15,10 +15,10 @@ td.numeric {
   text-align: right;
 }
 
-.memory table {
+.memory table, .app-detail table {
   background: #fff;
 }
 
-.memory table td:first-child {
+.memory table td:first-child, .app-detail table td:first-child {
   font-weight: bold;
 }
